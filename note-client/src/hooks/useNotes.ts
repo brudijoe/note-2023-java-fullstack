@@ -1,17 +1,27 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function useNotes() {
   const [notes, setNotes] = useState<Note[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/v1/note")
-      .then((response) => setNotes(response.data))
-      .catch((err) => console.log("Error fetching notes:", err));
+      .get("http://localhost:8080/api/v1/notes")
+      .then((response) => {
+        setNotes(response.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
   return {
-    notes
-  }
+    notes,
+    loading,
+    error,
+  };
 }

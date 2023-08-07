@@ -1,9 +1,17 @@
 import './App.css'
-import {map} from "ramda"
+import { map } from "ramda"
 import useNotes from "./hooks/useNotes";
 
 function App() {
-  const { notes } = useNotes();
+  const { notes, loading, error } = useNotes();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <>
