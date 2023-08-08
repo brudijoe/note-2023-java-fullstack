@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import {SETTINGS} from "../settings";
+
+export const NoteContext = createContext<NoteStore | null>(null);
 
 export default function useNotes() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -24,6 +26,7 @@ export default function useNotes() {
     axios
       .post(`${SETTINGS.HOST}/api/v1/addNote`, newNote)
       .then((response) => {
+        console.log(response)
         const updatedNotes = response.data;
         setNotes(updatedNotes);
       })
