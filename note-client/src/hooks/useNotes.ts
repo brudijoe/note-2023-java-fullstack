@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {SETTINGS} from "../settings";
 
 export default function useNotes() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -8,7 +9,7 @@ export default function useNotes() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/v1/notes")
+      .get(`${SETTINGS.HOST}/api/v1/notes`)
       .then((response) => {
         setNotes(response.data);
         setLoading(false);
@@ -18,6 +19,25 @@ export default function useNotes() {
         setLoading(false);
       });
   }, []);
+
+  const addNote = (newNote: Note) => {
+    axios
+      .post(`${SETTINGS.HOST}/api/v1/addNote`, newNote)
+      .then((response) => {
+        const updatedNotes = response.data;
+        setNotes(updatedNotes);
+      })
+      .catch((err) => {
+        setError("Error adding note: " + err.message);
+      });
+  };
+
+  return {
+    notes,
+    loading,
+    error,
+    addNote,
+  };
 
   return {
     notes,

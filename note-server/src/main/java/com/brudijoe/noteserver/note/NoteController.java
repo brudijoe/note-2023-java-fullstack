@@ -35,9 +35,10 @@ public class NoteController {
     }
 
     @PostMapping("/addNote")
-    public ResponseEntity<Void> addNote(@RequestBody Note note) {
+    public ResponseEntity<List<Note>> addNote(@RequestBody Note note) {
         noteService.addNewNote(note);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        List<Note> updatedNotes = noteService.getNotes();
+        return ResponseEntity.status(HttpStatus.CREATED).body(updatedNotes);
     }
 
     @DeleteMapping(path = "{id}")
