@@ -5,5 +5,6 @@ interface NoteStore {
 }
 
 interface Note {
+  id: number;
   noteText: string;
 }

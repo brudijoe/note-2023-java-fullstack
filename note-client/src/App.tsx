@@ -5,7 +5,7 @@ import useNotes, { NoteContext } from "./hooks/useNotes";
 import { CreateNote } from "./pages/CreateNote";
 
 function App() {
-  const { notes, addNote, loading, error } = useNotes();
+  const { notes, addNote, loading, error, deleteNote } = useNotes();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -23,8 +23,8 @@ function App() {
         {map((singleNote) => {
           return (
             <div key={singleNote.id}>
-              <div>{singleNote.id}</div>
               <div>{singleNote.noteText}</div>
+              <button onClick={() => deleteNote(singleNote.id)}>Delete</button>
             </div>
           );
         }, notes)}

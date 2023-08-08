@@ -26,7 +26,6 @@ export default function useNotes() {
     axios
       .post(`${SETTINGS.HOST}/api/v1/addNote`, newNote)
       .then((response) => {
-        console.log(response)
         const updatedNotes = response.data;
         setNotes(updatedNotes);
       })
@@ -35,11 +34,23 @@ export default function useNotes() {
       });
   };
 
+  const deleteNote = (noteId: number) => {
+    axios
+      .delete(`${SETTINGS.HOST}/api/v1/deleteNote/${noteId}`)
+      .then(() => {
+        setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
+      })
+      .catch((err) => {
+        setError("Error deleting note: " + err.message);
+      });
+  };
+
   return {
     notes,
     loading,
     error,
     addNote,
+    deleteNote
   };
 
 }
