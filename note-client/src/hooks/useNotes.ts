@@ -37,8 +37,9 @@ export default function useNotes() {
   const deleteNote = (noteId: number) => {
     axios
       .delete(`${SETTINGS.HOST}/api/v1/deleteNote/${noteId}`)
-      .then(() => {
-        setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
+      .then((response) => {
+        const updatedNotes = response.data;
+        setNotes(updatedNotes);
       })
       .catch((err) => {
         setError("Error deleting note: " + err.message);
