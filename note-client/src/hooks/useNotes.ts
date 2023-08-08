@@ -39,9 +39,4 @@ export default function useNotes() {
     addNote,
   };
 
-  return {
-    notes,
-    loading,
-    error,
-  };
 }
