@@ -47,6 +47,7 @@ export default function useNotes() {
   };
 
   const editNote = (noteId: number, newNoteText: string) => {
+    console.log(noteId)
     axios
       .put(`${SETTINGS.HOST}/api/v1/editNote/${noteId}`, { noteText: newNoteText })
       .then((response) => {

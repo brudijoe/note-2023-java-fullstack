@@ -17,27 +17,27 @@ function App() {
     return <div>Error: {error}</div>;
   }
 
-  function handleCloseModal() {
-    const dialog = document.getElementById("editNoteDialog");
+  function handleCloseModal(id) {
+    const dialog = document.getElementById(`editNoteDialog-${id}`);
     dialog.close();
   }
 
   function handleEditNote(id, noteText) {
-    const dialog = document.getElementById("editNoteDialog");
+    console.log({id})
+    const dialog = document.getElementById(`editNoteDialog-${id}`);
     dialog.showModal();
     setNewNoteText(noteText);
   }
 
   function handleConfirm(id) {
+    console.log({id})
     editNote(id, newNoteText);
-    const dialog = document.getElementById("editNoteDialog");
+    const dialog = document.getElementById(`editNoteDialog-${id}`);
     dialog.close();
   }
 
   return (
-    <NoteContext.Provider
-      value={{notes, loading, error, addNote, deleteNote, editNote}}
-    >
+    <NoteContext.Provider value={{notes, loading, error, addNote, deleteNote, editNote}}>
       <div className="flex flex-col h-screen">
         <h1>Note</h1>
         <CreateNote/>
@@ -51,7 +51,7 @@ function App() {
                   <button className="p-2 w-20" onClick={() => handleEditNote(singleNote.id, singleNote.noteText)}>Edit</button>
                   <button className="p-2 w-20" onClick={() => deleteNote(singleNote.id)}>Delete</button>
                 </div>
-                <dialog className="p-4 rounded" id="editNoteDialog">
+                <dialog className="p-4 rounded" id={`editNoteDialog-${singleNote.id}`}>
                   <div className="flex flex-col">
                     <div>Edit Note</div>
                     <textarea
@@ -61,7 +61,7 @@ function App() {
                       value={newNoteText} onChange={(event) => setNewNoteText(event.target.value)}
                     />
                     <div className="flex flex-row p-4 justify-between">
-                      <button className="p-2 w-20" onClick={handleCloseModal}>Cancel</button>
+                      <button className="p-2 w-20" onClick={() => handleCloseModal(singleNote.id)}>Cancel</button>
                       <button className="p-2 w-20" type="submit" onClick={() => handleConfirm(singleNote.id)}>Confirm</button>
                     </div>
                   </div>
