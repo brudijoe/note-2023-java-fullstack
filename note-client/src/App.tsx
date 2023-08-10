@@ -48,7 +48,7 @@ function App() {
               <div>{singleNote.noteText}</div>
               <button onClick={() => handleEditNote(singleNote.id, singleNote.noteText)}>Edit</button>
               <button onClick={() => deleteNote(singleNote.id)}>Delete</button>
-              <dialog id="editeditNoteDialog">
+              <dialog id="editNoteDialog">
                 <div>Edit Note</div>
                 <div>{singleNote.id}</div>
                 <textarea
@@ -58,7 +58,7 @@ function App() {
                   value={newNoteText} onChange={(e) => setNewNoteText(e.target.value)}
                 />
                 <button onClick={handleCloseModal}>Cancel</button>
-                <button onClick={() => handleAcceptAndClose(singleNote.id)}>Accept and Close</button>
+                <button onClick={() => handleAcceptAndClose(singleNote.id)}>Confirm</button>
               </dialog>
             </div>
           );

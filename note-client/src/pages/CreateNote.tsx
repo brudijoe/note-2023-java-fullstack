@@ -43,7 +43,7 @@ export function CreateNote() {
             placeholder={"Enter text here..."}
           />
           <button onClick={handleCloseModal}>Cancel</button>
-          <button type="submit">Add Note</button>
+          <button type="submit">Confirm</button>
         </form>
       </dialog>
     </>
