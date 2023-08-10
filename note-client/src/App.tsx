@@ -7,7 +7,7 @@ import {useState} from "react";
 
 function App() {
   const {notes, loading, error, addNote, deleteNote, editNote} = useNotes();
-  const [newNoteText, setNewNoteText] = useState("New Text ok?");
+  const [newNoteText, setNewNoteText] = useState("");
 
   if (loading) {
     return <div>Loading...</div>;
