@@ -18,6 +18,11 @@ export function CreateNote() {
     dialog.close();
   };
 
+  function handleCloseModal() {
+    const dialog = document.querySelector("dialog")
+    dialog.close();
+  }
+
   function handleOpenNewNote() {
     const dialog = document.querySelector("dialog")
     dialog.showModal();
@@ -37,6 +42,7 @@ export function CreateNote() {
             onChange={(event) => setNewNoteText(event.target.value)}
             placeholder={"Enter text here..."}
           />
+          <button onClick={handleCloseModal}>Cancel</button>
           <button type="submit">Add Note</button>
         </form>
       </dialog>
