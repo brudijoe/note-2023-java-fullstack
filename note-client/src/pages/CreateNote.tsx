@@ -30,7 +30,7 @@ export function CreateNote() {
 
   return (
     <div className="p-4">
-      <button className="w-20 mb-4" onClick={handleOpenNewNote}>New</button>
+      <button className="p-2 w-20" onClick={handleOpenNewNote}>New</button>
       <dialog className="p-4 rounded" id="addNoteDialog">
         <form className="flex flex-col" onSubmit={handleAddNote}>
           <div>New Note</div>
