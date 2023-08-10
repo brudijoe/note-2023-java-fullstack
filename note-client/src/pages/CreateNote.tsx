@@ -37,7 +37,7 @@ export function CreateNote() {
           <textarea
             rows={4}
             cols={30}
-            maxLength={1000}
+            maxLength={200}
             value={newNoteText}
             onChange={(event) => setNewNoteText(event.target.value)}
             placeholder={"Enter text here..."}

@@ -31,6 +31,7 @@ public class NoteController {
     @GetMapping("/notes")
     public ResponseEntity<List<Note>> getNotes() {
         List<Note> notes = noteService.getNotes();
+        notes.sort(Comparator.comparing(Note::getId));
         return ResponseEntity.ok(notes);
     }
 
@@ -38,6 +39,7 @@ public class NoteController {
     public ResponseEntity<List<Note>> addNote(@RequestBody Note note) {
         noteService.addNewNote(note);
         List<Note> updatedNotes = noteService.getNotes();
+        updatedNotes.sort(Comparator.comparing(Note::getId));
         return ResponseEntity.status(HttpStatus.CREATED).body(updatedNotes);
     }
 
@@ -45,6 +47,7 @@ public class NoteController {
     public ResponseEntity<List<Note>> deleteNote(@PathVariable("id") Long id) {
         noteService.deleteNote(id);
         List<Note> updatedNotes = noteService.getNotes();
+        updatedNotes.sort(Comparator.comparing(Note::getId));
         return ResponseEntity.ok().body(updatedNotes);
     }
 
