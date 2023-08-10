@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useState, useContext } from "react";
-import { NoteContext } from "../hooks/useNotes";
+import {useState, useContext} from "react";
+import {NoteContext} from "../hooks/useNotes";
 
 export function CreateNote() {
-  const { addNote } = useContext(NoteContext);
+  const {addNote} = useContext(NoteContext);
   const [newNoteText, setNewNoteText] = useState("");
 
   const handleAddNote: React.FormEventHandler<HTMLFormElement> = (event) => {
@@ -14,17 +14,32 @@ export function CreateNote() {
       });
       setNewNoteText("");
     }
+    const dialog = document.querySelector("dialog")
+    dialog.close();
   };
 
+  function handleOpenNewNote() {
+    const dialog = document.querySelector("dialog")
+    dialog.showModal();
+  }
+
   return (
-    <form onSubmit={handleAddNote}>
-      <input
-        type="text"
-        value={newNoteText}
-        onChange={(event) => setNewNoteText(event.target.value)}
-        placeholder="Enter a new note"
-      />
-      <button type="submit">Add Note</button>
-    </form>
+    <>
+      <button onClick={handleOpenNewNote}>New Note</button>
+      <dialog>
+        <form onSubmit={handleAddNote}>
+          <div>New Note</div>
+          <textarea
+            rows={4}
+            cols={30}
+            maxLength={1000}
+            value={newNoteText}
+            onChange={(event) => setNewNoteText(event.target.value)}
+            placeholder={"Enter text here..."}
+          />
+          <button type="submit">Add Note</button>
+        </form>
+      </dialog>
+    </>
   );
 }

@@ -46,12 +46,26 @@ export default function useNotes() {
       });
   };
 
+  const editNote = (noteId: number, newNoteText: string) => {
+    axios
+      .put(`${SETTINGS.HOST}/api/v1/editNote/${noteId}`, { noteText: newNoteText })
+      .then((response) => {
+        const updatedNotes = response.data;
+        console.log(response)
+        setNotes(updatedNotes);
+      })
+      .catch((err) => {
+        setError("Error editing note: " + err.message);
+      });
+  };
+
   return {
     notes,
     loading,
     error,
     addNote,
-    deleteNote
+    deleteNote,
+    editNote
   };
 
 }

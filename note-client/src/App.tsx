@@ -1,11 +1,13 @@
 import * as React from "react";
 import "./App.css";
-import { map } from "ramda";
-import useNotes, { NoteContext } from "./hooks/useNotes";
-import { CreateNote } from "./pages/CreateNote";
+import {map} from "ramda";
+import useNotes, {NoteContext} from "./hooks/useNotes";
+import {CreateNote} from "./pages/CreateNote";
+import {useState} from "react";
 
 function App() {
-  const { notes, addNote, loading, error, deleteNote } = useNotes();
+  const {notes, loading, error, addNote, deleteNote, editNote} = useNotes();
+  const [newNoteText, setNewNoteText] = useState("New Text ok?");
 
   if (loading) {
     return <div>Loading...</div>;
@@ -15,16 +17,49 @@ function App() {
     return <div>Error: {error}</div>;
   }
 
+  function handleCloseModal() {
+    const dialog = document.getElementById("noteDialog")
+    dialog.close();
+  }
+
+  function handleEditNote(id, noteText) {
+    const dialog = document.getElementById("noteDialog")
+    dialog.showModal();
+    setNewNoteText(noteText);
+  }
+
+  function handleAcceptAndClose(id) {
+    editNote(id, newNoteText);
+    const dialog = document.getElementById("noteDialog")
+    dialog.close();
+  }
+
   return (
-    <NoteContext.Provider value={{ notes, addNote, loading, error }}>
+    <NoteContext.Provider
+      value={{notes, loading, error, addNote, deleteNote, editNote}}
+    >
       <div>
-        <h1>Notes:</h1>
-        <CreateNote />
+        <h1>Note</h1>
+        <CreateNote/>
         {map((singleNote) => {
           return (
             <div key={singleNote.id}>
+              <div>{singleNote.id}</div>
               <div>{singleNote.noteText}</div>
+              <button onClick={() => handleEditNote(singleNote.id, singleNote.noteText)}>Edit</button>
               <button onClick={() => deleteNote(singleNote.id)}>Delete</button>
+              <dialog id="noteDialog">
+                <div>Edit Note</div>
+                <div>{singleNote.id}</div>
+                <textarea
+                  rows={4}
+                  cols={30}
+                  maxLength={1000}
+                  value={newNoteText} onChange={(e) => setNewNoteText(e.target.value)}
+                />
+                <button onClick={handleCloseModal}>Cancel</button>
+                <button onClick={() => handleAcceptAndClose(singleNote.id)}>Accept and Close</button>
+              </dialog>
             </div>
           );
         }, notes)}

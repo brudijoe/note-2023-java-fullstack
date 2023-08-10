@@ -48,12 +48,10 @@ public class NoteController {
         return ResponseEntity.ok().body(updatedNotes);
     }
 
-    @PutMapping(path = "{id}")
-    public ResponseEntity<Void> updateNote(
-            @PathVariable("id") Long id,
-            @RequestParam(required = false) String noteText
-    ) {
-        noteService.updateNote(id, noteText);
-        return ResponseEntity.status(HttpStatus.OK).build();
+    @PutMapping(path = "/editNote/{id}")
+    public ResponseEntity<List<Note>> updateNote(@PathVariable("id") Long id, @RequestBody Note note) {
+        noteService.updateNote(id, note.getNoteText());
+        List<Note> updatedNotes = noteService.getNotes();
+        return ResponseEntity.ok(updatedNotes);
     }
 }
