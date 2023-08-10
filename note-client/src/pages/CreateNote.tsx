@@ -29,10 +29,10 @@ export function CreateNote() {
   }
 
   return (
-    <>
-      <button onClick={handleOpenNewNote}>New Note</button>
-      <dialog id="addNoteDialog">
-        <form onSubmit={handleAddNote}>
+    <div className="p-4">
+      <button className="w-20 mb-4" onClick={handleOpenNewNote}>New</button>
+      <dialog className="p-4 rounded" id="addNoteDialog">
+        <form className="flex flex-col" onSubmit={handleAddNote}>
           <div>New Note</div>
           <textarea
             rows={4}
@@ -42,10 +42,12 @@ export function CreateNote() {
             onChange={(event) => setNewNoteText(event.target.value)}
             placeholder={"Enter text here..."}
           />
-          <button onClick={handleCloseModal}>Cancel</button>
-          <button type="submit">Confirm</button>
+          <div className="flex flex-row p-4 justify-between">
+            <button className="p-2 w-20" onClick={handleCloseModal}>Cancel</button>
+            <button className="p-2 w-20" type="submit">Confirm</button>
+          </div>
         </form>
       </dialog>
-    </>
+    </div>
   );
 }

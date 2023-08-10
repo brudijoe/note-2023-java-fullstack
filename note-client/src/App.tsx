@@ -28,7 +28,7 @@ function App() {
     setNewNoteText(noteText);
   }
 
-  function handleAcceptAndClose(id) {
+  function handleConfirm(id) {
     editNote(id, newNoteText);
     const dialog = document.getElementById("editNoteDialog");
     dialog.close();
@@ -38,31 +38,38 @@ function App() {
     <NoteContext.Provider
       value={{notes, loading, error, addNote, deleteNote, editNote}}
     >
-      <div>
+      <div className="flex flex-col h-screen">
         <h1>Note</h1>
         <CreateNote/>
-        {map((singleNote) => {
-          return (
-            <div key={singleNote.id}>
-              <div>{singleNote.id}</div>
-              <div>{singleNote.noteText}</div>
-              <button onClick={() => handleEditNote(singleNote.id, singleNote.noteText)}>Edit</button>
-              <button onClick={() => deleteNote(singleNote.id)}>Delete</button>
-              <dialog id="editNoteDialog">
-                <div>Edit Note</div>
+        <div className="p-4 grid grid-cols-4 gap-4">
+          {map((singleNote) => {
+            return (
+              <div className="shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_2px_rgba(0,0,0,0.24)] w-60 p-2.5 rounded" key={singleNote.id}>
                 <div>{singleNote.id}</div>
-                <textarea
-                  rows={4}
-                  cols={30}
-                  maxLength={1000}
-                  value={newNoteText} onChange={(e) => setNewNoteText(e.target.value)}
-                />
-                <button onClick={handleCloseModal}>Cancel</button>
-                <button onClick={() => handleAcceptAndClose(singleNote.id)}>Confirm</button>
-              </dialog>
-            </div>
-          );
-        }, notes)}
+                <div>{singleNote.noteText}</div>
+                <div className="flex flex-row p-4 justify-between">
+                  <button className="p-2 w-20" onClick={() => handleEditNote(singleNote.id, singleNote.noteText)}>Edit</button>
+                  <button className="p-2 w-20" onClick={() => deleteNote(singleNote.id)}>Delete</button>
+                </div>
+                <dialog className="p-4 rounded" id="editNoteDialog">
+                  <div className="flex flex-col">
+                    <div>Edit Note</div>
+                    <textarea
+                      rows={4}
+                      cols={30}
+                      maxLength={1000}
+                      value={newNoteText} onChange={(event) => setNewNoteText(event.target.value)}
+                    />
+                    <div className="flex flex-row p-4 justify-between">
+                      <button className="p-2 w-20" onClick={handleCloseModal}>Cancel</button>
+                      <button className="p-2 w-20" type="submit" onClick={() => handleConfirm(singleNote.id)}>Confirm</button>
+                    </div>
+                  </div>
+                </dialog>
+              </div>
+            );
+          }, notes)}
+        </div>
       </div>
     </NoteContext.Provider>
   );
