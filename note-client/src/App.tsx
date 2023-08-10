@@ -23,14 +23,12 @@ function App() {
   }
 
   function handleEditNote(id, noteText) {
-    console.log({id})
     const dialog = document.getElementById(`editNoteDialog-${id}`);
     dialog.showModal();
     setNewNoteText(noteText);
   }
 
   function handleConfirm(id) {
-    console.log({id})
     editNote(id, newNoteText);
     const dialog = document.getElementById(`editNoteDialog-${id}`);
     dialog.close();
