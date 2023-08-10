@@ -23,6 +23,7 @@ function App() {
   }
 
   function handleEditNote(id, noteText) {
+    console.log(id)
     const dialog = document.getElementById(`editNoteDialog-${id}`);
     dialog.showModal();
     setNewNoteText(noteText);
