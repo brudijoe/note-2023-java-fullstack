@@ -18,19 +18,19 @@ function App() {
   }
 
   function handleCloseModal() {
-    const dialog = document.getElementById("noteDialog")
+    const dialog = document.getElementById("editNoteDialog");
     dialog.close();
   }
 
   function handleEditNote(id, noteText) {
-    const dialog = document.getElementById("noteDialog")
+    const dialog = document.getElementById("editNoteDialog");
     dialog.showModal();
     setNewNoteText(noteText);
   }
 
   function handleAcceptAndClose(id) {
     editNote(id, newNoteText);
-    const dialog = document.getElementById("noteDialog")
+    const dialog = document.getElementById("editNoteDialog");
     dialog.close();
   }
 
@@ -48,7 +48,7 @@ function App() {
               <div>{singleNote.noteText}</div>
               <button onClick={() => handleEditNote(singleNote.id, singleNote.noteText)}>Edit</button>
               <button onClick={() => deleteNote(singleNote.id)}>Delete</button>
-              <dialog id="noteDialog">
+              <dialog id="editeditNoteDialog">
                 <div>Edit Note</div>
                 <div>{singleNote.id}</div>
                 <textarea

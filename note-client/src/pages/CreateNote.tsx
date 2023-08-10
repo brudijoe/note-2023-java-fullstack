@@ -14,24 +14,24 @@ export function CreateNote() {
       });
       setNewNoteText("");
     }
-    const dialog = document.querySelector("dialog")
+    const dialog = document.getElementById("addNoteDialog");
     dialog.close();
   };
 
   function handleCloseModal() {
-    const dialog = document.querySelector("dialog")
+    const dialog = document.getElementById("addNoteDialog");
     dialog.close();
   }
 
   function handleOpenNewNote() {
-    const dialog = document.querySelector("dialog")
+    const dialog = document.getElementById("addNoteDialog");
     dialog.showModal();
   }
 
   return (
     <>
       <button onClick={handleOpenNewNote}>New Note</button>
-      <dialog>
+      <dialog id="addNoteDialog">
         <form onSubmit={handleAddNote}>
           <div>New Note</div>
           <textarea
