@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../components/Button";
 
 export function NoteCard({singleNote, handleEditNote, deleteNote, newNoteText, setNewNoteText, handleCloseModal, handleConfirm}) {
   return (
@@ -6,8 +7,24 @@ export function NoteCard({singleNote, handleEditNote, deleteNote, newNoteText, s
       <div className="pb-2">{singleNote.id}</div>
       <div className="overflow-y-auto h-40 resize-none">{singleNote.noteText}</div>
       <div className="flex flex-row p-4 justify-between">
-        <button className="p-2 w-20" onClick={() => handleEditNote(singleNote.id, singleNote.noteText)}>Edit</button>
-        <button className="p-2 w-20" onClick={() => deleteNote(singleNote.id)}>Delete</button>
+        <Button
+          borderColor="border-blue-500"
+          backgroundColor="bg-blue-500"
+          backgroundColorHover="hover:bg-blue-700"
+          textColor="text-blue-700"
+          onClick={() => handleEditNote(singleNote.id, singleNote.noteText)}
+        >
+          Edit
+        </Button>
+        <Button
+          borderColor="border-red-500"
+          backgroundColor="bg-red-500"
+          backgroundColorHover="hover:bg-red-700"
+          textColor="text-red-700"
+          onClick={() => deleteNote(singleNote.id)}
+        >
+          Delete
+        </Button>
       </div>
       <dialog className="p-4 rounded" id={`editNoteDialog-${singleNote.id}`}>
         <div className="flex flex-col">
@@ -20,8 +37,25 @@ export function NoteCard({singleNote, handleEditNote, deleteNote, newNoteText, s
             onChange={(event) => setNewNoteText(event.target.value)}
           />
           <div className="flex flex-row p-4 justify-between">
-            <button className="p-2 w-20" onClick={() => handleCloseModal(singleNote.id)}>Cancel</button>
-            <button className="p-2 w-20" type="submit" onClick={() => handleConfirm(singleNote.id)}>Confirm</button>
+            <Button
+              borderColor="border-gray-500"
+              backgroundColor="bg-gray-500"
+              backgroundColorHover="hover:bg-gray-700"
+              textColor="text-gray-700"
+              onClick={() => handleCloseModal(singleNote.id)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              borderColor="border-green-500"
+              backgroundColor="bg-green-500"
+              backgroundColorHover="hover:bg-green-700"
+              textColor="text-green-700"
+              onClick={() => handleConfirm(singleNote.id)}
+            >
+              Confirm
+            </Button>
           </div>
         </div>
       </dialog>

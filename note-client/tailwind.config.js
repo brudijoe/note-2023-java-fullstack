@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
 export default {
   content: [
     "./index.html",
@@ -8,15 +9,13 @@ export default {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      'white': '#ffffff',
-      'purple': '#3f3cbb',
-      'midnight': '#121063',
-      'metal': '#565584',
-      'tahiti': '#3ab7bf',
-      'silver': '#ecebff',
-      'bubble-gum': '#ff77e9',
-      'bermuda': '#78dcca',
-      'dark': '#3C3C46',
+      black: colors.black,
+      white: colors.white,
+      gray: colors.gray,
+      green: colors.green,
+      blue: colors.blue,
+      red: colors.red,
+      yellow: colors.yellow,
     },
     extend: {},
   },

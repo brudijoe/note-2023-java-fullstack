@@ -1,6 +1,7 @@
 import * as React from "react";
 import {useState, useContext} from "react";
 import {NoteContext} from "../hooks/useNotes";
+import Button from "../components/Button";
 
 export function CreateNote() {
   const {addNote} = useContext(NoteContext);
@@ -30,7 +31,15 @@ export function CreateNote() {
 
   return (
     <div className="p-4">
-      <button className="p-2 w-20" onClick={handleOpenNewNote}>New</button>
+      <Button
+        borderColor="border-green-500"
+        backgroundColor="bg-green-500"
+        backgroundColorHover="hover:bg-green-700"
+        textColor="text-green-700"
+        onClick={handleOpenNewNote}
+      >
+        New
+      </Button>
       <dialog className="p-4 rounded" id="addNoteDialog">
         <form className="flex flex-col" onSubmit={handleAddNote}>
           <div>New Note</div>
@@ -43,8 +52,24 @@ export function CreateNote() {
             placeholder={"Enter text here..."}
           />
           <div className="flex flex-row p-4 justify-between">
-            <button className="p-2 w-20" onClick={handleCloseModal}>Cancel</button>
-            <button className="p-2 w-20" type="submit">Confirm</button>
+            <Button
+              borderColor="border-gray-500"
+              backgroundColor="bg-gray-500"
+              backgroundColorHover="hover:bg-gray-700"
+              textColor="text-gray-700"
+              onClick={handleCloseModal}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              borderColor="border-green-500"
+              backgroundColor="bg-green-500"
+              backgroundColorHover="hover:bg-green-700"
+              textColor="text-green-700"
+            >
+              Confirm
+            </Button>
           </div>
         </form>
       </dialog>
