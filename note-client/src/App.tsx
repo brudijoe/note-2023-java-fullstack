@@ -1,9 +1,8 @@
-import React from "react";
+import {useState} from "react";
 import "./App.css";
 import {map} from "ramda";
 import useNotes, {NoteContext} from "./hooks/useNotes";
 import {CreateNote} from "./pages/CreateNote";
-import {useState} from "react";
 import {NoteCard} from "./pages/NoteCard";
 
 function App() {
