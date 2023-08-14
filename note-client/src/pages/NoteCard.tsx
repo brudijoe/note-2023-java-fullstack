@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "../components/Button";
+import {Button} from "../components/Button";
 
-export function NoteCard({singleNote, handleEditNote, deleteNote, newNoteText, setNewNoteText, handleCloseModal, handleConfirm}) {
+export function NoteCard({singleNote, handleEditNote, deleteNote, newNoteText, setNewNoteText, handleCloseModal, handleEditConfirm}) {
   return (
     <div className="shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_2px_rgba(0,0,0,0.24)] w-60 p-2.5 rounded" key={singleNote.id}>
       <div className="pb-2">{singleNote.id}</div>
@@ -13,6 +13,7 @@ export function NoteCard({singleNote, handleEditNote, deleteNote, newNoteText, s
           backgroundColorHover="hover:bg-blue-700"
           textColor="text-blue-700"
           onClick={() => handleEditNote(singleNote.id, singleNote.noteText)}
+          ariaLabel="edit"
         >
           Edit
         </Button>
@@ -22,6 +23,7 @@ export function NoteCard({singleNote, handleEditNote, deleteNote, newNoteText, s
           backgroundColorHover="hover:bg-red-700"
           textColor="text-red-700"
           onClick={() => deleteNote(singleNote.id)}
+          ariaLabel="delete"
         >
           Delete
         </Button>
@@ -30,6 +32,7 @@ export function NoteCard({singleNote, handleEditNote, deleteNote, newNoteText, s
         <div className="flex flex-col">
           <div>Edit Note</div>
           <textarea
+            className="p-2"
             rows={4}
             cols={30}
             maxLength={200}
@@ -43,6 +46,7 @@ export function NoteCard({singleNote, handleEditNote, deleteNote, newNoteText, s
               backgroundColorHover="hover:bg-gray-700"
               textColor="text-gray-700"
               onClick={() => handleCloseModal(singleNote.id)}
+              ariaLabel="cancel"
             >
               Cancel
             </Button>
@@ -52,7 +56,8 @@ export function NoteCard({singleNote, handleEditNote, deleteNote, newNoteText, s
               backgroundColor="bg-green-500"
               backgroundColorHover="hover:bg-green-700"
               textColor="text-green-700"
-              onClick={() => handleConfirm(singleNote.id)}
+              onClick={() => handleEditConfirm(singleNote.id)}
+              ariaLabel="confirm"
             >
               Confirm
             </Button>
