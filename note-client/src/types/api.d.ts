@@ -3,9 +3,9 @@ interface NoteStore {
 
   addNote({noteText}: { noteText: string }): void;
 
-  deleteNote(noteId: number): void;
+  deleteNote(id: number): void;
 
-  editNote(noteId: number, newNoteText: string): void;
+  editNote(id: number, noteText: string): void;
 }
 
 interface Note {

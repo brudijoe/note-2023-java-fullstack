@@ -1,4 +1,4 @@
-import {useState} from "react";
+import React from "react";
 import "./App.css";
 import {map} from "ramda";
 import useNotes, {NoteContext} from "./hooks/useNotes";
@@ -7,7 +7,6 @@ import {NoteCard} from "./pages/NoteCard";
 
 function App() {
   const {notes, loading, error, addNote, deleteNote, editNote} = useNotes();
-  const [newNoteText, setNewNoteText] = useState("");
 
   if (loading) {
     return <div>Loading...</div>;
@@ -15,23 +14,6 @@ function App() {
 
   if (error) {
     return <div>Error: {error}</div>;
-  }
-
-  function handleCloseModal(id) {
-    const dialog = document.getElementById(`editNoteDialog-${id}`);
-    dialog.close();
-  }
-
-  function handleEditNote(id, noteText) {
-    const dialog = document.getElementById(`editNoteDialog-${id}`);
-    dialog.showModal();
-    setNewNoteText(noteText);
-  }
-
-  function handleConfirm(id) {
-    editNote(id, newNoteText);
-    const dialog = document.getElementById(`editNoteDialog-${id}`);
-    dialog.close();
   }
 
   return (
@@ -44,12 +26,7 @@ function App() {
             <NoteCard
               key={singleNote.id}
               singleNote={singleNote}
-              handleEditNote={handleEditNote}
               deleteNote={deleteNote}
-              newNoteText={newNoteText}
-              setNewNoteText={setNewNoteText}
-              handleCloseModal={handleCloseModal}
-              handleConfirm={handleConfirm}
             />
           ), notes)}
         </div>

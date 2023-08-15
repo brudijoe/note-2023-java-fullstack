@@ -6,15 +6,19 @@ interface DialogProps {
   type: "add" | "edit";
   title: string;
   dialogId: string;
+  existingNoteId?: number;
+  existingNoteText: string;
 }
 
 export function Dialog({
                          type,
                          title,
                          dialogId,
+                         existingNoteId,
+                         existingNoteText = ""
                        }: DialogProps) {
-  const {addNote} = useContext(NoteContext);
-  const [noteText, setNoteText] = useState("");
+  const {addNote, editNote} = useContext(NoteContext);
+  const [noteText, setNoteText] = useState(existingNoteText);
 
   function handleAddNote() {
     if (noteText.trim() !== "") {
@@ -23,8 +27,16 @@ export function Dialog({
       });
       setNoteText("");
     }
-    const dialog = document.getElementById("addNoteDialog");
+    const dialog = document.getElementById(dialogId);
     dialog.close();
+  }
+
+  function handleEditNote() {
+    if (existingNoteId !== undefined) {
+      editNote(existingNoteId, noteText);
+      const dialog = document.getElementById(dialogId);
+      dialog.close();
+    }
   }
 
   const handleDialog = () => {
@@ -32,14 +44,17 @@ export function Dialog({
       handleAddNote();
       handleDialogClose();
     } else if (type === "edit") {
-
+      handleEditNote();
+      handleDialogClose();
     }
   };
 
   function handleDialogClose() {
     const dialog = document.getElementById(dialogId);
     dialog.close();
-    setNoteText("");
+    if (type === "add") {
+      setNoteText("");
+    }
   }
 
   return (
