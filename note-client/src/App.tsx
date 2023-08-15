@@ -26,7 +26,6 @@ function App() {
             <NoteCard
               key={singleNote.id}
               singleNote={singleNote}
-              deleteNote={deleteNote}
             />
           ), notes)}
         </div>

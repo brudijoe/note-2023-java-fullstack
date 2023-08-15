@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Button} from "../components/Button";
 import {Dialog} from "../components/Dialog";
+import {NoteContext} from "../hooks/useNotes";
 
-export function NoteCard({singleNote, deleteNote}) {
+export function NoteCard({singleNote}) {
+  const {deleteNote} = useContext(NoteContext);
 
   function handleDialogOpen() {
     const dialog = document.getElementById(`editNoteDialog-${singleNote.id}`);
