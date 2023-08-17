@@ -3,62 +3,33 @@ import {Button} from "./Button";
 import {NoteContext} from "../hooks/useNotes";
 
 interface DialogProps {
-  type: "add" | "edit";
   title: string;
-  dialogId: string;
-  existingNoteId?: number;
-  existingNoteText: string;
+  dialogRef: React.RefObject<HTMLDialogElement>;
 }
 
-export function Dialog({
-                         type,
-                         title,
-                         dialogId,
-                         existingNoteId,
-                         existingNoteText = ""
-                       }: DialogProps) {
-  const {addNote, editNote} = useContext(NoteContext);
-  const [noteText, setNoteText] = useState(existingNoteText);
+export function AddDialog({title, dialogRef}: DialogProps) {
+  const {addNote} = useContext(NoteContext);
+  const [noteText, setNoteText] = useState("");
 
   function handleAddNote() {
     if (noteText.trim() !== "") {
-      addNote({
-        noteText: noteText,
-      });
+      addNote({noteText});
       setNoteText("");
     }
-    const dialog = document.getElementById(dialogId);
-    dialog.close();
-  }
-
-  function handleEditNote() {
-    if (existingNoteId !== undefined) {
-      editNote(existingNoteId, noteText);
-      const dialog = document.getElementById(dialogId);
-      dialog.close();
+    if (dialogRef.current !== null) {
+      dialogRef.current.close();
     }
   }
-
-  const handleDialog = () => {
-    if (type === "add") {
-      handleAddNote();
-      handleDialogClose();
-    } else if (type === "edit") {
-      handleEditNote();
-      handleDialogClose();
-    }
-  };
 
   function handleDialogClose() {
-    const dialog = document.getElementById(dialogId);
-    dialog.close();
-    if (type === "add") {
-      setNoteText("");
+    if (dialogRef.current !== null) {
+      dialogRef.current.close();
     }
+    setNoteText("");
   }
 
   return (
-    <dialog className="p-4 rounded" id={dialogId}>
+    <dialog className="p-4 rounded" ref={dialogRef}>
       <form className="flex flex-col">
         <div>{title}</div>
         <textarea
@@ -69,6 +40,13 @@ export function Dialog({
           value={noteText}
           onChange={(event) => setNoteText(event.target.value)}
           placeholder={"Enter text here..."}
+          ref={(ref) => ref && ref.focus()}
+          onFocus={(event) =>
+            event.currentTarget.setSelectionRange(
+              event.currentTarget.value.length,
+              event.currentTarget.value.length
+            )
+          }
         />
         <div className="flex flex-row p-4 justify-between">
           <Button
@@ -84,7 +62,7 @@ export function Dialog({
             borderColor="border-green-500"
             backgroundColorHover="hover:bg-green-700"
             textColor="text-green-700"
-            onClick={handleDialog}
+            onClick={handleAddNote}
             ariaLabel="confirm"
           >
             Confirm

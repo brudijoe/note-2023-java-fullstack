@@ -1,15 +1,15 @@
-import React, {useContext} from "react";
+import React, {useContext, useRef} from "react";
 import {Button} from "../components/Button";
-import {Dialog} from "../components/Dialog";
+import {EditDialog} from "../components/EditDialog";
 import {NoteContext} from "../hooks/useNotes";
 
 export function NoteCard({singleNote}) {
   const {deleteNote} = useContext(NoteContext);
+  const dialogRef = useRef(null)
 
-  function handleDialogOpen() {
-    const dialog = document.getElementById(`editNoteDialog-${singleNote.id}`);
-    dialog.showModal();
-  }
+  const handleDialogOpen = () => {
+    dialogRef.current.showModal();
+  };
 
   return (
     <div className="shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_2px_rgba(0,0,0,0.24)] w-60 p-2.5 rounded" key={singleNote.id}>
@@ -37,8 +37,7 @@ export function NoteCard({singleNote}) {
           Delete
         </Button>
       </div>
-      <Dialog type={"edit"} title={"Edit Note"} dialogId={`editNoteDialog-${singleNote.id}`} existingNoteId={singleNote.id}
-              existingNoteText={singleNote.noteText}/>
+      <EditDialog type={"edit"} title={"Edit Note"} existingNoteId={singleNote.id} existingNoteText={singleNote.noteText} dialogRef={dialogRef}/>
     </div>
   );
 }
