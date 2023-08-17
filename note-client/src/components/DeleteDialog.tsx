@@ -32,6 +32,7 @@ export function DeleteDialog({
     <dialog className="p-4 rounded w-80" ref={dialogRef}>
       <form className="flex flex-col">
         <div>{title}</div>
+        <div>{existingNoteId}</div>
         <div className="flex flex-row p-4 justify-between">
           <Button
             borderColor="border-gray-500"
