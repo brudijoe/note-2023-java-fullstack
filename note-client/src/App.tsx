@@ -21,7 +21,7 @@ function App() {
       <div className="flex flex-col h-screen">
         <h1>Note</h1>
         <CreateNote/>
-        <div className="p-4 grid grid-cols-4 gap-4">
+        <div className="flex flex-row flex-wrap p-4 gap-4">
           {map((singleNote) => (
             <NoteCard
               key={singleNote.id}

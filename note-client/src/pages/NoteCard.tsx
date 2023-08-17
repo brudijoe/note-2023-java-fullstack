@@ -1,14 +1,18 @@
-import React, {useContext, useRef} from "react";
+import React, {useRef} from "react";
 import {Button} from "../components/Button";
 import {EditDialog} from "../components/EditDialog";
-import {NoteContext} from "../hooks/useNotes";
+import {DeleteDialog} from "../components/DeleteDialog";
 
 export function NoteCard({singleNote}) {
-  const {deleteNote} = useContext(NoteContext);
-  const dialogRef = useRef(null)
+  const editDialogRef = useRef(null);
+  const deleteDialogRef = useRef(null);
 
-  const handleDialogOpen = () => {
-    dialogRef.current.showModal();
+  const handleEditDialogOpen = () => {
+    editDialogRef.current.showModal();
+  };
+
+  const handleDeleteDialogOpen = () => {
+    deleteDialogRef.current.showModal();
   };
 
   return (
@@ -21,7 +25,7 @@ export function NoteCard({singleNote}) {
           backgroundColor="bg-blue-500"
           backgroundColorHover="hover:bg-blue-700"
           textColor="text-blue-700"
-          onClick={handleDialogOpen}
+          onClick={handleEditDialogOpen}
           ariaLabel="edit"
         >
           Edit
@@ -31,13 +35,14 @@ export function NoteCard({singleNote}) {
           backgroundColor="bg-red-500"
           backgroundColorHover="hover:bg-red-700"
           textColor="text-red-700"
-          onClick={() => deleteNote(singleNote.id)}
+          onClick={handleDeleteDialogOpen}
           ariaLabel="delete"
         >
           Delete
         </Button>
       </div>
-      <EditDialog type={"edit"} title={"Edit Note"} existingNoteId={singleNote.id} existingNoteText={singleNote.noteText} dialogRef={dialogRef}/>
+      <DeleteDialog title={"Delete Note"} dialogRef={deleteDialogRef} existingNoteId={singleNote.id} />
+      <EditDialog type={"edit"} title={"Edit Note"} existingNoteId={singleNote.id} existingNoteText={singleNote.noteText} dialogRef={editDialogRef} />
     </div>
   );
 }

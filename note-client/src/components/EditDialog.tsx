@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
-import {Button} from "./Button";
 import {NoteContext} from "../hooks/useNotes";
+import {Button} from "./Button";
 
 interface DialogProps {
   title: string;

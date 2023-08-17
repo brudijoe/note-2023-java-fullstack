@@ -1,13 +1,12 @@
-import * as React from "react";
+import {useRef} from "react";
 import {Button} from "../components/Button";
 import {AddDialog} from "../components/AddDialog";
-import {useRef} from "react";
 
 export function CreateNote() {
-  const dialogRef = useRef(null)
+  const openDialogRef = useRef(null)
 
   const handleDialogOpen = () => {
-    dialogRef.current.showModal();
+    openDialogRef.current.showModal();
   };
 
   return (
@@ -24,7 +23,7 @@ export function CreateNote() {
       </Button>
       <AddDialog
         title="Add Note"
-        dialogRef={dialogRef}
+        dialogRef={openDialogRef}
       />
     </div>
   );
