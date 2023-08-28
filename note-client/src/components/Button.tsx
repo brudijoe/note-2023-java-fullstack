@@ -11,14 +11,14 @@ interface Props {
 }
 
 export function Button({
-                         type = "button",
-                         borderColor,
-                         backgroundColorHover,
-                         textColor,
-                         onClick,
-                         ariaLabel,
-                         children,
-                       }: Props) {
+  type = "button",
+  borderColor,
+  backgroundColorHover,
+  textColor,
+  onClick,
+  ariaLabel,
+  children
+}: Props) {
   return (
     <button
       type={type}

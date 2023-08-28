@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import {useContext, useState} from "react";
 import {NoteContext} from "../hooks/useNotes";
 import {Button} from "./Button";
 
@@ -8,7 +8,13 @@ interface DialogProps {
 }
 
 export function AddDialog({title, dialogRef}: DialogProps) {
-  const {addNote} = useContext(NoteContext);
+  const noteContext = useContext(NoteContext);
+
+  if (!noteContext) {
+    throw new Error("NoteContext is null");
+  }
+
+  const {addNote} = noteContext;
   const [noteText, setNoteText] = useState("");
 
   function handleAddNote() {
@@ -42,10 +48,7 @@ export function AddDialog({title, dialogRef}: DialogProps) {
           placeholder={"Enter text here..."}
           ref={(ref) => ref && ref.focus()}
           onFocus={(event) =>
-            event.currentTarget.setSelectionRange(
-              event.currentTarget.value.length,
-              event.currentTarget.value.length
-            )
+            event.currentTarget.setSelectionRange(event.currentTarget.value.length, event.currentTarget.value.length)
           }
         />
         <div className="flex flex-row p-4 justify-between">

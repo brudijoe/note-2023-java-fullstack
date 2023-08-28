@@ -1,11 +1,15 @@
 interface NoteStore {
-  notes: Note[]
+  notes: Note[];
 
-  addNote({noteText}: { noteText: string }): void;
+  loading: boolean;
 
-  deleteNote(id: number): void;
+  error: string | null;
 
-  editNote(id: number, noteText: string): void;
+  addNote: ({ noteText }: {noteText: string}) => void
+
+  deleteNote: (id: number) => void
+
+  editNote: (id: number, noteText: string) => void
 }
 
 interface Note {

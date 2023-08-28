@@ -20,14 +20,14 @@ function App() {
     <NoteContext.Provider value={{notes, loading, error, addNote, deleteNote, editNote}}>
       <div className="flex flex-col h-screen">
         <h1>Note</h1>
-        <CreateNote/>
+        <CreateNote />
         <div className="flex flex-row flex-wrap p-4 gap-4">
-          {map((singleNote) => (
-            <NoteCard
-              key={singleNote.id}
-              singleNote={singleNote}
-            />
-          ), notes)}
+          {map(
+            (singleNote) => (
+              <NoteCard key={singleNote.id} singleNote={singleNote} />
+            ),
+            notes
+          )}
         </div>
       </div>
     </NoteContext.Provider>

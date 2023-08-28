@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import {useContext} from "react";
 import {NoteContext} from "../hooks/useNotes";
 import {Button} from "./Button";
 
@@ -8,12 +8,14 @@ interface DialogProps {
   dialogRef: React.RefObject<HTMLDialogElement>;
 }
 
-export function DeleteDialog({
-                               title,
-                               existingNoteId,
-                               dialogRef
-                             }: DialogProps) {
-  const {deleteNote} = useContext(NoteContext);
+export function DeleteDialog({title, existingNoteId, dialogRef}: DialogProps) {
+  const noteContext = useContext(NoteContext);
+
+  if (!noteContext) {
+    throw new Error("NoteContext is null");
+  }
+
+  const {deleteNote} = noteContext;
 
   function handleDeleteNote() {
     deleteNote(existingNoteId);
