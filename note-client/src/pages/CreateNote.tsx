@@ -1,6 +1,6 @@
 import {useRef} from "react";
-import {Button} from "../components/Button";
-import {AddDialog} from "../components/AddDialog";
+import {Button} from "../components/buttons/Button";
+import {AddDialog} from "../components/dialogs/AddDialog";
 
 export function CreateNote() {
   const openDialogRef = useRef<HTMLDialogElement | null>(null);

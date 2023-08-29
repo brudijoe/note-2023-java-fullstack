@@ -23,7 +23,7 @@ export function Button({
     <button
       type={type}
       onClick={onClick}
-      className={`bg-transparent ${backgroundColorHover} ${textColor} font-semibold hover:text-white py-2 px-4 border-2 ${borderColor} hover:border-transparent rounded`}
+      className={`bg-transparent ${backgroundColorHover} text-black dark:text-white font-semibold hover:text-white py-2 px-4 border-2 ${borderColor} hover:border-transparent rounded`}
       aria-label={ariaLabel}
     >
       {children}

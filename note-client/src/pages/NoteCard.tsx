@@ -1,7 +1,7 @@
 import {useRef} from "react";
-import {Button} from "../components/Button";
-import {EditDialog} from "../components/EditDialog";
-import {DeleteDialog} from "../components/DeleteDialog";
+import {Button} from "../components/buttons/Button";
+import {EditDialog} from "../components/dialogs/EditDialog";
+import {DeleteDialog} from "../components/dialogs/DeleteDialog";
 interface NoteCardProps {
   singleNote: Note;
 }

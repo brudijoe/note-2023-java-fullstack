@@ -1,9 +1,9 @@
-import React from "react";
 import "./App.css";
 import {map} from "ramda";
 import useNotes, {NoteContext} from "./hooks/useNotes";
 import {CreateNote} from "./pages/CreateNote";
 import {NoteCard} from "./pages/NoteCard";
+import {Header} from "./pages/Header";
 
 function App() {
   const {notes, loading, error, addNote, deleteNote, editNote} = useNotes();
@@ -19,7 +19,7 @@ function App() {
   return (
     <NoteContext.Provider value={{notes, loading, error, addNote, deleteNote, editNote}}>
       <div className="flex flex-col h-screen">
-        <h1>Note</h1>
+        <Header />
         <CreateNote />
         <div className="flex flex-row flex-wrap p-4 gap-4">
           {map(
