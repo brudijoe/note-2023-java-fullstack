@@ -19,7 +19,7 @@ export default function useNotes(): NoteStore {
         setLoading(false);
       })
       .catch((err: Error) => {
-        setError("Error gettings notes: " + err.message);
+        setError("Error getting notes: " + err.message);
         setLoading(false);
       });
   }, []);
