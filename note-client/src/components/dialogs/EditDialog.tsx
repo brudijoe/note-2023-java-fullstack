@@ -5,6 +5,7 @@ import {Title} from "../Title";
 import {Dialog} from "../Dialog";
 import {Textarea} from "../Textarea";
 import {ButtonGroup} from "../ButtonGroup";
+import {Form} from "../Form";
 
 interface DialogProps {
   title: string;
@@ -41,7 +42,7 @@ export function EditDialog({title, existingNoteId, existingNoteText = "", dialog
 
   return (
     <Dialog dialogRef={dialogRef}>
-      <form className="flex flex-col">
+      <Form>
         <Title title={title} />
         <Textarea noteText={noteText} onSetNoteText={setNoteText} />
         <ButtonGroup>
@@ -62,7 +63,7 @@ export function EditDialog({title, existingNoteId, existingNoteText = "", dialog
             Confirm
           </Button>
         </ButtonGroup>
-      </form>
+      </Form>
     </Dialog>
   );
 }

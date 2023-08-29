@@ -5,6 +5,7 @@ import {Title} from "../Title";
 import {Dialog} from "../Dialog";
 import {ButtonGroup} from "../ButtonGroup";
 import {Textarea} from "../Textarea";
+import {Form} from "../Form";
 
 interface DialogProps {
   title: string;
@@ -40,7 +41,7 @@ export function AddDialog({title, dialogRef}: DialogProps) {
 
   return (
     <Dialog dialogRef={dialogRef}>
-      <form className="flex flex-col">
+      <Form>
         <Title title={title} />
         <Textarea noteText={noteText} onSetNoteText={setNoteText} />
         <ButtonGroup>
@@ -61,7 +62,7 @@ export function AddDialog({title, dialogRef}: DialogProps) {
             Confirm
           </Button>
         </ButtonGroup>
-      </form>
+      </Form>
     </Dialog>
   );
 }

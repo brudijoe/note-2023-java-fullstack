@@ -4,7 +4,7 @@ import {Button} from "../buttons/Button";
 import {Title} from "../Title";
 import {Dialog} from "../Dialog";
 import {ButtonGroup} from "../ButtonGroup";
-
+import {Form} from "../Form";
 interface DialogProps {
   title: string;
   existingNoteId: number;
@@ -35,7 +35,7 @@ export function DeleteDialog({title, existingNoteId, dialogRef}: DialogProps) {
 
   return (
     <Dialog dialogRef={dialogRef}>
-      <form className="flex flex-col">
+      <Form>
         <Title title={title} />
         <div className="text-black dark:text-white">{existingNoteId}</div>
         <ButtonGroup>
@@ -56,7 +56,7 @@ export function DeleteDialog({title, existingNoteId, dialogRef}: DialogProps) {
             Delete
           </Button>
         </ButtonGroup>
-      </form>
+      </Form>
     </Dialog>
   );
 }
