@@ -1,6 +1,10 @@
 import {useContext, useState} from "react";
 import {NoteContext} from "../../hooks/useNotes";
 import {Button} from "../buttons/Button";
+import {Title} from "../Title";
+import {Dialog} from "../Dialog";
+import {Textarea} from "../Textarea";
+import {ButtonGroup} from "../ButtonGroup";
 
 interface DialogProps {
   title: string;
@@ -36,24 +40,11 @@ export function EditDialog({title, existingNoteId, existingNoteText = "", dialog
   }
 
   return (
-    <dialog
-      className="p-4 bg-gray-200 dark:bg-gray-800 border-2 border-black dark:border-white rounded"
-      ref={dialogRef}
-    >
+    <Dialog dialogRef={dialogRef}>
       <form className="flex flex-col">
-        <div className="text-black dark:text-white font-bold">{title}</div>
-        <textarea
-          className="p-2 bg-gray-200 dark:bg-gray-800 text-black dark:text-white"
-          rows={4}
-          cols={30}
-          maxLength={200}
-          value={noteText}
-          onChange={(event) => setNoteText(event.target.value)}
-          placeholder={"Enter text here..."}
-          ref={(ref) => ref && ref.focus()}
-          onFocus={(e) => e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
-        />
-        <div className="flex flex-row pt-2 justify-between">
+        <Title title={title} />
+        <Textarea noteText={noteText} onSetNoteText={setNoteText} />
+        <ButtonGroup>
           <Button
             borderColor="border-gray-500"
             backgroundColorHover="hover:bg-gray-700"
@@ -70,8 +61,8 @@ export function EditDialog({title, existingNoteId, existingNoteText = "", dialog
           >
             Confirm
           </Button>
-        </div>
+        </ButtonGroup>
       </form>
-    </dialog>
+    </Dialog>
   );
 }
