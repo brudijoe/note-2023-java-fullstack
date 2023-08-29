@@ -36,11 +36,14 @@ export function EditDialog({title, existingNoteId, existingNoteText = "", dialog
   }
 
   return (
-    <dialog className="p-4 rounded" ref={dialogRef}>
+    <dialog
+      className="p-4 bg-gray-200 dark:bg-gray-800 border-2 border-black dark:border-white rounded"
+      ref={dialogRef}
+    >
       <form className="flex flex-col">
-        <div>{title}</div>
+        <div className="text-black dark:text-white font-bold">{title}</div>
         <textarea
-          className="p-2"
+          className="p-2 bg-gray-200 dark:bg-gray-800 text-black dark:text-white"
           rows={4}
           cols={30}
           maxLength={200}
@@ -50,11 +53,10 @@ export function EditDialog({title, existingNoteId, existingNoteText = "", dialog
           ref={(ref) => ref && ref.focus()}
           onFocus={(e) => e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
         />
-        <div className="flex flex-row p-4 justify-between">
+        <div className="flex flex-row pt-2 justify-between">
           <Button
             borderColor="border-gray-500"
             backgroundColorHover="hover:bg-gray-700"
-            textColor="text-gray-700"
             onClick={handleDialogClose}
             ariaLabel="cancel"
           >
@@ -63,7 +65,6 @@ export function EditDialog({title, existingNoteId, existingNoteText = "", dialog
           <Button
             borderColor="border-green-500"
             backgroundColorHover="hover:bg-green-700"
-            textColor="text-green-700"
             onClick={handleEditNote}
             ariaLabel="confirm"
           >

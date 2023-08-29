@@ -1,38 +1,31 @@
-import {Button} from "../components/buttons/Button";
+import {useState, useEffect} from "react";
 
 export function DarkModeSwitch() {
-  function handleDarkMode() {
-    if (localStorage.getItem("color-theme")) {
-      if (localStorage.getItem("color-theme") === "light") {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
-      }
+  const [darkMode, setDarkMode] = useState(localStorage.getItem("color-theme") || "light");
 
-      // if NOT set via local storage previously
+  useEffect(() => {
+    if (darkMode === "dark") {
+      document.documentElement.classList.add("dark");
     } else {
-      if (document.documentElement.classList.contains("dark")) {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
-      } else {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
-      }
+      document.documentElement.classList.remove("dark");
     }
+
+    localStorage.setItem("color-theme", darkMode);
+  }, [darkMode]);
+
+  function handleDarkMode() {
+    setDarkMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   }
 
   return (
     <div className="p-4">
-      <Button
-        borderColor="border-green-500"
-        backgroundColorHover="hover:bg-green-700"
-        textColor="text-green-700"
+      <button
+        type="button"
+        className="w-40 py-2 px-4 bg-transparent dark:hover:bg-gray-100 hover:bg-gray-900 hover:text-white dark:hover:text-black text-black dark:text-white font-semibold border-2 border-black dark:border-white rounded"
         onClick={handleDarkMode}
       >
-        Dark Mode
-      </Button>
+        Dark Mode: {darkMode === "dark" ? "ON" : "OFF"}
+      </button>
     </div>
   );
 }

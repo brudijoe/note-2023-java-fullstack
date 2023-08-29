@@ -18,7 +18,7 @@ function App() {
 
   return (
     <NoteContext.Provider value={{notes, loading, error, addNote, deleteNote, editNote}}>
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-900">
         <Header />
         <CreateNote />
         <div className="flex flex-row flex-wrap p-4 gap-4">

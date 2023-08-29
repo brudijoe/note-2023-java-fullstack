@@ -31,15 +31,17 @@ export function DeleteDialog({title, existingNoteId, dialogRef}: DialogProps) {
   }
 
   return (
-    <dialog className="p-4 rounded w-80" ref={dialogRef}>
+    <dialog
+      className="w-80 p-4 bg-gray-200 dark:bg-gray-800 border-2 border-black dark:border-white rounded"
+      ref={dialogRef}
+    >
       <form className="flex flex-col">
-        <div>{title}</div>
-        <div>{existingNoteId}</div>
-        <div className="flex flex-row p-4 justify-between">
+        <div className="text-black dark:text-white font-bold">{title}</div>
+        <div className="text-black dark:text-white">{existingNoteId}</div>
+        <div className="flex flex-row pt-2 justify-between">
           <Button
             borderColor="border-gray-500"
             backgroundColorHover="hover:bg-gray-700"
-            textColor="text-gray-700"
             onClick={handleDialogClose}
             ariaLabel="cancel"
           >
@@ -48,7 +50,6 @@ export function DeleteDialog({title, existingNoteId, dialogRef}: DialogProps) {
           <Button
             borderColor="border-red-500"
             backgroundColorHover="hover:bg-red-700"
-            textColor="text-red-700"
             onClick={handleDeleteNote}
             ariaLabel="delete"
           >

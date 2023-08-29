@@ -24,16 +24,15 @@ export function NoteCard({singleNote}: NoteCardProps) {
 
   return (
     <div
-      className="shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_2px_rgba(0,0,0,0.24)] w-60 p-2.5 rounded"
+      className="w-60 p-4 bg-gray-200 dark:bg-gray-800 border-2 border-black dark:border-white shadow-md rounded"
       key={singleNote.id}
     >
-      <div className="pb-2">{singleNote.id}</div>
-      <div className="overflow-y-auto h-40 resize-none">{singleNote.noteText}</div>
-      <div className="flex flex-row p-4 justify-between">
+      <div className="pb-2 text-black dark:text-white">{singleNote.id}</div>
+      <div className="overflow-y-auto h-40 resize-none text-black dark:text-white">{singleNote.noteText}</div>
+      <div className="flex flex-row justify-between">
         <Button
           borderColor="border-blue-500"
           backgroundColorHover="hover:bg-blue-700"
-          textColor="text-blue-700"
           onClick={handleEditDialogOpen}
           ariaLabel="edit"
         >
@@ -42,7 +41,6 @@ export function NoteCard({singleNote}: NoteCardProps) {
         <Button
           borderColor="border-red-500"
           backgroundColorHover="hover:bg-red-700"
-          textColor="text-red-700"
           onClick={handleDeleteDialogOpen}
           ariaLabel="delete"
         >
