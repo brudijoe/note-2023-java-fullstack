@@ -37,7 +37,6 @@ export function EditDialog({title, existingNoteId, existingNoteText = "", dialog
     if (dialogRef.current !== null) {
       dialogRef.current.close();
     }
-    setNoteText("");
   }
 
   return (
@@ -55,7 +54,8 @@ export function EditDialog({title, existingNoteId, existingNoteText = "", dialog
             Cancel
           </Button>
           <Button
-            borderColor="border-green-500"
+            borderColor="border-green-300"
+            backgroundColor="bg-green-500"
             backgroundColorHover="hover:bg-green-700"
             onClick={handleEditNote}
             ariaLabel="confirm"

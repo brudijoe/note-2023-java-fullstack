@@ -14,7 +14,8 @@ export function CreateNote() {
   return (
     <div className="p-4">
       <Button
-        borderColor="border-green-500"
+        borderColor="border-green-300"
+        backgroundColor="bg-green-500"
         backgroundColorHover="hover:bg-green-700"
         onClick={handleDialogOpen}
         ariaLabel="new"

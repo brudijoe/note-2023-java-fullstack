@@ -48,7 +48,8 @@ export function DeleteDialog({title, existingNoteId, dialogRef}: DialogProps) {
             Cancel
           </Button>
           <Button
-            borderColor="border-red-500"
+            borderColor="border-red-300"
+            backgroundColor="bg-red-500"
             backgroundColorHover="hover:bg-red-700"
             onClick={handleDeleteNote}
             ariaLabel="delete"
