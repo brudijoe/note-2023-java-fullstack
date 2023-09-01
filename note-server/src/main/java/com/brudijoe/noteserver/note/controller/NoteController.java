@@ -38,7 +38,7 @@ public class NoteController {
 
     @PostMapping("/addNote")
     public ResponseEntity<List<Note>> addNote(@RequestBody Note note) {
-        noteService.addNewNote(note);
+        noteService.addNote(note);
         List<Note> updatedNotes = noteService.getNotes();
         updatedNotes.sort(Comparator.comparing(Note::getId));
         return ResponseEntity.status(HttpStatus.CREATED).body(updatedNotes);
