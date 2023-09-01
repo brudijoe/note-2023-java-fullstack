@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.brudijoe.noteserver.note.model.Note;
@@ -15,7 +14,6 @@ public class NoteService {
 
     private final NoteRepository noteRepository;
 
-    @Autowired
     public NoteService(NoteRepository noteRepository) {
         this.noteRepository = noteRepository;
     }
