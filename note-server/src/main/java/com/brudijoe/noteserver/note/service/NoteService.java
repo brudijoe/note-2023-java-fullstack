@@ -1,4 +1,4 @@
-package com.brudijoe.noteserver.note;
+package com.brudijoe.noteserver.note.service;
 
 import java.util.List;
 import java.util.Objects;
@@ -6,6 +6,9 @@ import java.util.Objects;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.brudijoe.noteserver.note.model.Note;
+import com.brudijoe.noteserver.note.repository.NoteRepository;
 
 @Service
 public class NoteService {

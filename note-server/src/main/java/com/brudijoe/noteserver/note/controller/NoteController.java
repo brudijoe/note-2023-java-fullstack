@@ -1,4 +1,4 @@
-package com.brudijoe.noteserver.note;
+package com.brudijoe.noteserver.note.controller;
 
 import java.util.Comparator;
 import java.util.List;
@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.brudijoe.noteserver.note.model.Note;
+import com.brudijoe.noteserver.note.service.NoteService;
 
 @RestController
 @RequestMapping(path = "api/v1")

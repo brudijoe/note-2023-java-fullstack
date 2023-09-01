@@ -1,4 +1,4 @@
-package com.brudijoe.noteserver.note;
+package com.brudijoe.noteserver.note.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
