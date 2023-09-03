@@ -7,7 +7,7 @@ type SimpleNote = Pick<Note, "noteText">;
 export const NoteContext = createContext<NoteStore | null>(null);
 
 export default function useNotes(): NoteStore {
-  const [notes, setNotes] = useState<Note[]>([]);
+  const [notes, setNotes] = useState<Note[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 

@@ -13,7 +13,7 @@ function App() {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>{error}</div>;
   }
 
   return (
@@ -22,12 +22,7 @@ function App() {
         <Header />
         <CreateNote />
         <div className="flex flex-row flex-wrap p-4 gap-4">
-          {map(
-            (singleNote) => (
-              <NoteCard key={singleNote.id} singleNote={singleNote} />
-            ),
-            notes
-          )}
+          {notes && map((singleNote) => <NoteCard key={singleNote.id} singleNote={singleNote} />, notes)}
         </div>
       </div>
     </NoteContext.Provider>

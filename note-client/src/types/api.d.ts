@@ -1,5 +1,5 @@
 interface NoteStore {
-  notes: Note[];
+  notes: Note[] | null;
 
   loading: boolean;
 
