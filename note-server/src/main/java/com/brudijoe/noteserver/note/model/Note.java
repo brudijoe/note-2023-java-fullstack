@@ -1,5 +1,6 @@
 package com.brudijoe.noteserver.note.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +23,7 @@ public class Note {
             generator = "note_sequence"
     )
     private Long id;
+    @Column(length = 1024)
     private String noteText;
 
     public Note() {
