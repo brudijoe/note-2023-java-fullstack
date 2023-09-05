@@ -1,7 +1,7 @@
-interface TextareaProps {
+type TextareaProps = {
   noteText: string;
   onSetNoteText: (text: string) => void;
-}
+};
 
 export function Textarea({noteText, onSetNoteText}: TextareaProps) {
   return (

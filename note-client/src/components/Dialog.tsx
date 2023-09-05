@@ -1,7 +1,7 @@
-interface DialogProps {
+type DialogProps = {
   dialogRef: React.RefObject<HTMLDialogElement>;
   children?: React.ReactNode;
-}
+};
 
 export function Dialog({dialogRef, children}: DialogProps) {
   return (

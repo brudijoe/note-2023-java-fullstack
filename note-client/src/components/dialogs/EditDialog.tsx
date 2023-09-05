@@ -7,14 +7,14 @@ import {Textarea} from "../Textarea";
 import {ButtonGroup} from "../ButtonGroup";
 import {Form} from "../Form";
 
-interface DialogProps {
+type EditDialogProps = {
   title: string;
   existingNoteId?: number;
   existingNoteText?: string;
   dialogRef: React.RefObject<HTMLDialogElement>;
-}
+};
 
-export function EditDialog({title, existingNoteId, existingNoteText = "", dialogRef}: DialogProps) {
+export function EditDialog({title, existingNoteId, existingNoteText = "", dialogRef}: EditDialogProps) {
   const noteContext = useContext(NoteContext);
 
   if (!noteContext) {

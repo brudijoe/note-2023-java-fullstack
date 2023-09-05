@@ -7,12 +7,12 @@ import {ButtonGroup} from "../ButtonGroup";
 import {Textarea} from "../Textarea";
 import {Form} from "../Form";
 
-interface DialogProps {
+type AddDialogProps = {
   title: string;
   dialogRef: React.RefObject<HTMLDialogElement>;
-}
+};
 
-export function AddDialog({title, dialogRef}: DialogProps) {
+export function AddDialog({title, dialogRef}: AddDialogProps) {
   const noteContext = useContext(NoteContext);
 
   if (!noteContext) {

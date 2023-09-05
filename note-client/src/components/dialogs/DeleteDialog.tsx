@@ -5,13 +5,14 @@ import {Title} from "../Title";
 import {Dialog} from "../Dialog";
 import {ButtonGroup} from "../ButtonGroup";
 import {Form} from "../Form";
-interface DialogProps {
+
+type DeleteDialogProps = {
   title: string;
   existingNoteId: number;
   dialogRef: React.RefObject<HTMLDialogElement>;
-}
+};
 
-export function DeleteDialog({title, existingNoteId, dialogRef}: DialogProps) {
+export function DeleteDialog({title, existingNoteId, dialogRef}: DeleteDialogProps) {
   const noteContext = useContext(NoteContext);
 
   if (!noteContext) {

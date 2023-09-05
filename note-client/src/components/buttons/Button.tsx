@@ -1,6 +1,6 @@
 import React from "react";
 
-interface ButtonProps {
+type ButtonProps = {
   type?: "button" | "submit" | "reset";
   borderColor: string;
   backgroundColor?: string;
@@ -8,7 +8,7 @@ interface ButtonProps {
   onClick?: () => void;
   ariaLabel?: string;
   children?: React.ReactNode;
-}
+};
 
 export function Button({
   type = "button",

@@ -1,4 +1,4 @@
-interface NoteStore {
+type NoteStore = {
   notes: Note[] | null;
 
   loading: boolean;
@@ -10,9 +10,9 @@ interface NoteStore {
   deleteNote: (id: number) => void
 
   editNote: (id: number, noteText: string) => void
-}
+};
 
-interface Note {
+type Note = {
   id: number;
   noteText: string;
-}
+};

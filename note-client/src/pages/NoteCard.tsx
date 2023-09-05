@@ -3,9 +3,10 @@ import {Button} from "../components/buttons/Button";
 import {EditDialog} from "../components/dialogs/EditDialog";
 import {DeleteDialog} from "../components/dialogs/DeleteDialog";
 import {ButtonGroup} from "../components/ButtonGroup";
-interface NoteCardProps {
+
+type NoteCardProps = {
   singleNote: Note;
-}
+};
 
 export function NoteCard({singleNote}: NoteCardProps) {
   const editDialogRef = useRef<HTMLDialogElement | null>(null);
