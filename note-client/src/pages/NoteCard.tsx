@@ -26,10 +26,10 @@ export function NoteCard({singleNote}: NoteCardProps) {
 
   return (
     <div
-      className="w-72 p-4 bg-gray-200 dark:bg-gray-800 border-2 border-black dark:border-white shadow-md rounded"
+      className="flex-auto w-72 p-4 bg-gray-200 dark:bg-gray-800 border-2 border-black dark:border-white shadow-md rounded"
       key={singleNote.id}
     >
-      <div className="pb-2 text-black dark:text-white">{singleNote.id}</div>
+      <div className="pb-4 text-black dark:text-white">{singleNote.id}</div>
       <div className="overflow-y-auto h-40 resize-none text-black dark:text-white">{singleNote.noteText}</div>
       <ButtonGroup>
         <Button

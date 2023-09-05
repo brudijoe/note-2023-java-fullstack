@@ -20,7 +20,7 @@ function App() {
           notes && (
             <>
               <CreateNote />
-              <div className="flex flex-row overflow-y-auto flex-wrap px-4 pb-4 gap-4">
+              <div className="flex flex-row flex-wrap px-4 pb-4 gap-4 overflow-y-auto">
                 {map(
                   (singleNote) => (
                     <NoteCard key={singleNote.id} singleNote={singleNote} />
