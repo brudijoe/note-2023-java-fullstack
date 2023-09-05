@@ -1,4 +1,3 @@
-import "./App.css";
 import {map} from "ramda";
 import useNotes, {NoteContext} from "./hooks/useNotes";
 import {CreateNote} from "./pages/CreateNote";
@@ -11,7 +10,7 @@ function App() {
 
   return (
     <NoteContext.Provider value={{notes, loading, error, addNote, deleteNote, editNote}}>
-      <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-900">
+      <div className="flex flex-col h-full bg-gray-100 dark:bg-gray-900">
         <Header />
         {loading ? (
           <div className="text-black dark:text-white font-bold">Loading...</div>
@@ -21,7 +20,7 @@ function App() {
           notes && (
             <>
               <CreateNote />
-              <div className="flex flex-row flex-wrap p-4 gap-4">
+              <div className="flex flex-row overflow-y-auto flex-wrap px-4 pb-4 gap-4">
                 {map(
                   (singleNote) => (
                     <NoteCard key={singleNote.id} singleNote={singleNote} />
