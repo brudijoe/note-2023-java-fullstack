@@ -1,6 +1,6 @@
 import React from "react";
 
-interface Props {
+interface ButtonProps {
   type?: "button" | "submit" | "reset";
   borderColor: string;
   backgroundColor?: string;
@@ -18,7 +18,7 @@ export function Button({
   onClick,
   ariaLabel,
   children
-}: Props) {
+}: ButtonProps) {
   return (
     <button
       type={type}
