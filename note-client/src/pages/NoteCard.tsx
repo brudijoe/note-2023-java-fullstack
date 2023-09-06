@@ -27,9 +27,9 @@ export function NoteCard({singleNote}: NoteCardProps) {
   return (
     <div
       className="flex-auto w-72 p-4 bg-gray-200 dark:bg-gray-800 border-2 border-black dark:border-white shadow-md rounded"
-      key={singleNote.id}
+      key={singleNote.noteId}
     >
-      <div className="pb-4 text-black dark:text-white">{singleNote.id}</div>
+      <div className="pb-4 text-black dark:text-white">{singleNote.noteId}</div>
       <div className="overflow-y-auto h-40 resize-none text-black dark:text-white">{singleNote.noteText}</div>
       <ButtonGroup>
         <Button
@@ -49,10 +49,10 @@ export function NoteCard({singleNote}: NoteCardProps) {
           Delete
         </Button>
       </ButtonGroup>
-      <DeleteDialog title={"Delete Note"} dialogRef={deleteDialogRef} existingNoteId={singleNote.id} />
+      <DeleteDialog title={"Delete Note"} dialogRef={deleteDialogRef} existingNoteId={singleNote.noteId} />
       <EditDialog
         title={"Edit Note"}
-        existingNoteId={singleNote.id}
+        existingNoteId={singleNote.noteId}
         existingNoteText={singleNote.noteText}
         dialogRef={editDialogRef}
       />

@@ -23,7 +23,7 @@ function App() {
               <div className="flex flex-row flex-wrap px-4 pb-4 gap-4 overflow-y-auto">
                 {map(
                   (singleNote) => (
-                    <NoteCard key={singleNote.id} singleNote={singleNote} />
+                    <NoteCard key={singleNote.noteId} singleNote={singleNote} />
                   ),
                   notes
                 )}

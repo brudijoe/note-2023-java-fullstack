@@ -32,7 +32,7 @@ public class NoteController {
     @GetMapping("/notes")
     public ResponseEntity<List<Note>> getNotes() {
         List<Note> notes = noteService.getNotes();
-        notes.sort(Comparator.comparing(Note::getId));
+        notes.sort(Comparator.comparing(Note::getNoteId));
         return ResponseEntity.ok(notes);
     }
 
@@ -40,23 +40,23 @@ public class NoteController {
     public ResponseEntity<List<Note>> addNote(@RequestBody Note note) {
         noteService.addNote(note);
         List<Note> updatedNotes = noteService.getNotes();
-        updatedNotes.sort(Comparator.comparing(Note::getId));
+        updatedNotes.sort(Comparator.comparing(Note::getNoteId));
         return ResponseEntity.status(HttpStatus.CREATED).body(updatedNotes);
     }
 
-    @DeleteMapping(path = "/deleteNote/{id}")
-    public ResponseEntity<List<Note>> deleteNote(@PathVariable("id") Long id) {
-        noteService.deleteNote(id);
+    @DeleteMapping(path = "/deleteNote/{noteId}")
+    public ResponseEntity<List<Note>> deleteNote(@PathVariable("noteId") Long noteId) {
+        noteService.deleteNote(noteId);
         List<Note> updatedNotes = noteService.getNotes();
-        updatedNotes.sort(Comparator.comparing(Note::getId));
+        updatedNotes.sort(Comparator.comparing(Note::getNoteId));
         return ResponseEntity.ok().body(updatedNotes);
     }
 
-    @PutMapping(path = "/editNote/{id}")
-    public ResponseEntity<List<Note>> updateNote(@PathVariable("id") Long id, @RequestBody Note note) {
-        noteService.updateNote(id, note.getNoteText());
+    @PutMapping(path = "/editNote/{noteId}")
+    public ResponseEntity<List<Note>> updateNote(@PathVariable("noteId") Long noteId, @RequestBody Note note) {
+        noteService.updateNote(noteId, note.getNoteText());
         List<Note> updatedNotes = noteService.getNotes();
-        updatedNotes.sort(Comparator.comparing(Note::getId));
+        updatedNotes.sort(Comparator.comparing(Note::getNoteId));
         return ResponseEntity.ok().body(updatedNotes);
     }
 }

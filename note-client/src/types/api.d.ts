@@ -7,12 +7,12 @@ type NoteStore = {
 
   addNote: ({ noteText }: {noteText: string}) => void
 
-  deleteNote: (id: number) => void
+  deleteNote: (noteId: number) => void
 
-  editNote: (id: number, noteText: string) => void
+  editNote: (noteId: number, noteText: string) => void
 };
 
 type Note = {
-  id: number;
+  noteId: number;
   noteText: string;
 };

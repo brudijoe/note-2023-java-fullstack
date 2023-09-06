@@ -26,18 +26,18 @@ public class NoteService {
         noteRepository.save(note);
     }
 
-    public void deleteNote(Long id) {
-        boolean exists = noteRepository.existsById(id);
+    public void deleteNote(Long noteId) {
+        boolean exists = noteRepository.existsById(noteId);
         if (!exists) {
-            throw new IllegalStateException("note with id: " + id + " does not exists");
+            throw new IllegalStateException("note with noteId: " + noteId + " does not exists");
         }
-        noteRepository.deleteById(id);
+        noteRepository.deleteById(noteId);
     }
 
     @Transactional
-    public void updateNote(Long id, String noteText) {
-        Note note = noteRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("note with id: " + id + " does not exist"));
+    public void updateNote(Long noteId, String noteText) {
+        Note note = noteRepository.findById(noteId)
+                .orElseThrow(() -> new IllegalStateException("note with noteId: " + noteId + " does not exist"));
 
         if (noteText != null &&
                 noteText.length() > 0 &&

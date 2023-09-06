@@ -2,7 +2,7 @@ import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import {SETTINGS} from "../settings";
 
-type SimpleNote = Omit<Note, "id">;
+type SimpleNote = Omit<Note, "noteId">;
 
 export const NoteContext = createContext<NoteStore | null>(null);
 
@@ -36,7 +36,7 @@ export default function useNotes(): NoteStore {
       });
   };
 
-  const deleteNote = (noteId: number) => {
+  const deleteNote = (noteId: number) => {    
     axios
       .delete<Note[]>(`${SETTINGS.HOST}/api/v1/deleteNote/${noteId}`)
       .then((response) => {

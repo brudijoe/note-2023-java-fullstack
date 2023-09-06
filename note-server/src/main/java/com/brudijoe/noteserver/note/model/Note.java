@@ -22,7 +22,7 @@ public class Note {
             strategy = GenerationType.SEQUENCE,
             generator = "note_sequence"
     )
-    private Long id;
+    private Long noteId;
     @Column(length = 1024)
     private String noteText;
 
@@ -30,8 +30,8 @@ public class Note {
 
     }
 
-    public Note(Long id, String noteText) {
-        this.id = id;
+    public Note(Long noteId, String noteText) {
+        this.noteId = noteId;
         this.noteText = noteText;
     }
 
@@ -39,12 +39,12 @@ public class Note {
         this.noteText = noteText;
     }
 
-    public Long getId() {
-        return id;
+    public Long getNoteId() {
+        return noteId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setNoteId(Long noteId) {
+        this.noteId = noteId;
     }
 
     public String getNoteText() {
@@ -58,7 +58,7 @@ public class Note {
     @Override
     public String toString() {
         return "Note{" +
-                "id=" + id +
+                "noteId=" + noteId +
                 ", noteText='" + noteText + '\'' +
                 '}';
     }

@@ -9,7 +9,7 @@ import com.brudijoe.noteserver.note.model.Note;
 
 public interface NoteRepository extends JpaRepository<Note, Long> {
 
-    @Query("SELECT n FROM Note n WHERE n.id = ?1")
-    Optional<Note> findById(Long id);
+    @Query("SELECT n FROM Note n WHERE n.noteId = ?1")
+    Optional<Note> findById(Long noteId);
 
 }
