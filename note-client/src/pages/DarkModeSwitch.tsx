@@ -9,7 +9,6 @@ export function DarkModeSwitch() {
     } else {
       document.documentElement.classList.remove("dark");
     }
-
     localStorage.setItem("color-theme", darkMode);
   }, [darkMode]);
 
