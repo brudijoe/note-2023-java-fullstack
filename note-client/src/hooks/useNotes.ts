@@ -1,6 +1,7 @@
 import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import {SETTINGS} from "../settings";
+import { NoteStore, Note  } from "../types/types";
 
 type SimpleNote = Omit<Note, "noteId">;
 

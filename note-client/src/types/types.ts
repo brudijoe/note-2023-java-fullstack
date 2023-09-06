@@ -1,4 +1,4 @@
-type NoteStore = {
+export type NoteStore = {
   notes: Note[] | null;
 
   loading: boolean;
@@ -12,7 +12,7 @@ type NoteStore = {
   editNote: (noteId: number, noteText: string) => void
 };
 
-type Note = {
+export type Note = {
   noteId: number;
   noteText: string;
 };
