@@ -2,7 +2,7 @@ import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import {SETTINGS} from "../settings";
 
-type SimpleNote = Pick<Note, "noteText">;
+type SimpleNote = Omit<Note, "id">;
 
 export const NoteContext = createContext<NoteStore | null>(null);
 
