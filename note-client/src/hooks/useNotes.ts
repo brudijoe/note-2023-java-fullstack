@@ -1,7 +1,7 @@
 import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import {SETTINGS} from "../settings";
-import { NoteStore, Note  } from "../types/types";
+import {NoteStore, Note} from "../types/types";
 
 type SimpleNote = Omit<Note, "noteId">;
 
@@ -25,44 +25,47 @@ export default function useNotes(): NoteStore {
       });
   }, []);
 
-  const addNote = (newNote: SimpleNote) => {
-    axios
-      .post<Note[]>(`${SETTINGS.HOST}/api/v1/addNote`, newNote)
-      .then((response) => {
-        const updatedNotes = response.data;
-        setNotes(updatedNotes);
-      })
-      .catch((err: Error) => {
-        setError("Error adding note: " + err.message);
-      });
+
+
+  const addNote = async (newNote: SimpleNote) => {
+    try {
+      const response = await axios.post<Note[]>(`${SETTINGS.HOST}/api/v1/addNote`, newNote);
+      setNotes(response.data);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError("Error adding note: " + error.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
+    }
   };
 
-  const deleteNote = (noteId: number) => {    
-    axios
-      .delete<Note[]>(`${SETTINGS.HOST}/api/v1/deleteNote/${noteId}`)
-      .then((response) => {
-        const updatedNotes = response.data;
-        setNotes(updatedNotes);
-      })
-      .catch((err: Error) => {
-        setError("Error deleting note: " + err.message);
-      });
+  const deleteNote = async (noteId: number) => {
+    try {
+      const response = await axios.delete<Note[]>(`${SETTINGS.HOST}/api/v1/deleteNote/${noteId}`);
+      setNotes(response.data);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError("Error deleting note: " + error.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
+    }
   };
 
-  const editNote = (noteId: number, newNoteText: string) => {
-    console.log(noteId);
-    axios
-      .put<Note[]>(`${SETTINGS.HOST}/api/v1/editNote/${noteId}`, {
-        noteText: newNoteText
-      })
-      .then((response) => {
-        const updatedNotes = response.data;
-        console.log(response);
-        setNotes(updatedNotes);
-      })
-      .catch((err: Error) => {
-        setError("Error editing note: " + err.message);
+  const editNote = async (noteId: number, newNoteText: string) => {
+    try {
+      const response = await axios.put<Note[]>(`${SETTINGS.HOST}/api/v1/editNote/${noteId}`, {
+        noteText: newNoteText,
       });
+      setNotes(response.data);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError("Error editing note: " + error.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
+    }
   };
 
   return {
@@ -71,6 +74,6 @@ export default function useNotes(): NoteStore {
     error,
     addNote,
     deleteNote,
-    editNote
+    editNote,
   };
 }
