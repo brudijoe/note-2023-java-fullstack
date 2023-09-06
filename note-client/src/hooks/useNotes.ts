@@ -25,8 +25,6 @@ export default function useNotes(): NoteStore {
       });
   }, []);
 
-
-
   const addNote = async (newNote: SimpleNote) => {
     try {
       const response = await axios.post<Note[]>(`${SETTINGS.HOST}/api/v1/addNote`, newNote);
@@ -56,7 +54,7 @@ export default function useNotes(): NoteStore {
   const editNote = async (noteId: number, newNoteText: string) => {
     try {
       const response = await axios.put<Note[]>(`${SETTINGS.HOST}/api/v1/editNote/${noteId}`, {
-        noteText: newNoteText,
+        noteText: newNoteText
       });
       setNotes(response.data);
     } catch (error) {
@@ -74,6 +72,6 @@ export default function useNotes(): NoteStore {
     error,
     addNote,
     deleteNote,
-    editNote,
+    editNote
   };
 }
