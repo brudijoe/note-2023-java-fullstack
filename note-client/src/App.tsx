@@ -1,9 +1,8 @@
-import {map} from "ramda";
 import useNotes, {NoteContext} from "./hooks/useNotes";
 import {CreateNote} from "./pages/CreateNote";
-import {NoteCard} from "./pages/NoteCard";
 import {Header} from "./pages/Header";
 import {Title} from "./components/Title";
+import {NoteList} from "./pages/NoteList";
 
 function App() {
   const {notes, loading, error, addNote, deleteNote, editNote} = useNotes();
@@ -20,14 +19,7 @@ function App() {
           notes && (
             <>
               <CreateNote />
-              <div className="flex flex-row flex-wrap px-4 pb-4 gap-4 overflow-y-auto">
-                {map(
-                  (singleNote) => (
-                    <NoteCard key={singleNote.noteId} singleNote={singleNote} />
-                  ),
-                  notes
-                )}
-              </div>
+              <NoteList notes={notes} />
             </>
           )
         )}

@@ -16,11 +16,11 @@ public class NoteConfig {
     CommandLineRunner commandLineRunner(NoteRepository noteRepository) {
         return args -> {
             Note noteOne = new Note(
-                    "Das ist ein Text - 1"
+                    "This is a text - 1"
             );
 
             Note noteTwo = new Note(
-                    "Das ist ein Text - 2"
+                    "This is a text - 2"
             );
 
             noteRepository.saveAll(List.of(noteOne, noteTwo));
