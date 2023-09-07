@@ -3,5 +3,5 @@ type FormProps = {
 };
 
 export function Form({children}: FormProps) {
-  return <form className="flex flex-col">{children}</form>;
+  return <form className="flex flex-col gap-y-4">{children}</form>;
 }

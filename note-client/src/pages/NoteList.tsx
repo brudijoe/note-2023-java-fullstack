@@ -8,7 +8,7 @@ type NoteListProps = {
 
 export function NoteList({notes}: NoteListProps) {
   return (
-    <div className="flex flex-row flex-wrap px-4 pb-4 gap-4 overflow-y-auto">
+    <div className="flex flex-col gap-y-4 p-4 overflow-y-auto">
       {map(
         (singleNote) => (
           <NoteCard key={singleNote.noteId} singleNote={singleNote} />

@@ -6,9 +6,8 @@ type TextareaProps = {
 export function Textarea({noteText, onSetNoteText}: TextareaProps) {
   return (
     <textarea
-      className="p-2 bg-gray-200 dark:bg-gray-800 text-black dark:text-white"
-      rows={4}
-      cols={200}
+      className="bg-gray-200 dark:bg-gray-800 text-black dark:text-white"
+      rows={8}
       maxLength={1000}
       value={noteText}
       onChange={(event) => onSetNoteText(event.target.value)}

@@ -5,11 +5,11 @@ export type NoteStore = {
 
   error: string | null;
 
-  addNote: ({ noteText }: {noteText: string}) => Promise<void>
+  addNote: ({ noteText }: {noteText: string}) => void
 
-  deleteNote: (noteId: number) => Promise<void>
+  deleteNote: (noteId: number) => void
 
-  editNote: (noteId: number, noteText: string) => Promise<void>
+  editNote: (noteId: number, noteText: string) => void
 };
 
 export type Note = {

@@ -40,11 +40,11 @@ export function AddDialog({title, dialogRef}: AddDialogProps) {
   }
 
   return (
-    <Dialog dialogRef={dialogRef}>
+    <Dialog width="w-6/12" dialogRef={dialogRef}>
       <Form>
         <Title title={title} />
         <Textarea noteText={noteText} onSetNoteText={setNoteText} />
-        <ButtonGroup>
+        <ButtonGroup flexDirection="flex-row" justify="justify-between">
           <Button
             borderColor="border-gray-500"
             backgroundColorHover="hover:bg-gray-700"

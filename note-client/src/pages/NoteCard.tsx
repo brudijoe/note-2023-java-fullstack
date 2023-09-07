@@ -4,6 +4,7 @@ import {EditDialog} from "../components/dialogs/EditDialog";
 import {DeleteDialog} from "../components/dialogs/DeleteDialog";
 import {ButtonGroup} from "../components/ButtonGroup";
 import {Note} from "../types/types";
+import {NoteInformation} from "./NoteInformation";
 
 type NoteCardProps = {
   singleNote: Note;
@@ -27,12 +28,12 @@ export function NoteCard({singleNote}: NoteCardProps) {
 
   return (
     <div
-      className="flex-auto w-72 p-4 bg-gray-200 dark:bg-gray-800 border-2 border-black dark:border-white shadow-md rounded"
+      className="flex flex-row justify-between items-center p-4 bg-gray-200 dark:bg-gray-800 border-2 border-black dark:border-white shadow-md rounded"
       key={singleNote.noteId}
     >
-      <div className="pb-4 text-black dark:text-white">{singleNote.noteId}</div>
-      <div className="overflow-y-auto h-40 resize-none text-black dark:text-white">{singleNote.noteText}</div>
-      <ButtonGroup>
+      <NoteInformation noteId={singleNote.noteId} />
+      <div className="flex-1 px-4 text-justify text-black dark:text-white">{singleNote.noteText}</div>
+      <ButtonGroup flexDirection="flex-row" gap="gap-4">
         <Button
           borderColor="border-blue-500"
           backgroundColorHover="hover:bg-blue-700"

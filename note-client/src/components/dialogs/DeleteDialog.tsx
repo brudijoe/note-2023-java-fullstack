@@ -35,11 +35,11 @@ export function DeleteDialog({title, existingNoteId, dialogRef}: DeleteDialogPro
   }
 
   return (
-    <Dialog dialogRef={dialogRef}>
+    <Dialog width="w-72" dialogRef={dialogRef}>
       <Form>
         <Title title={title} />
         <div className="text-black dark:text-white">{existingNoteId}</div>
-        <ButtonGroup>
+        <ButtonGroup flexDirection="flex-row" justify="justify-between">
           <Button
             borderColor="border-gray-500"
             backgroundColorHover="hover:bg-gray-700"
