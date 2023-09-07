@@ -5,7 +5,7 @@ type ButtonProps = {
   borderColor: string;
   backgroundColor?: string;
   backgroundColorHover: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   ariaLabel?: string;
   children?: React.ReactNode;
 };
