@@ -1,6 +1,6 @@
 import {map} from "ramda";
 import {NoteCard} from "./NoteCard";
-import {Note} from "../types/types";
+import {Note} from "../../types/types";
 
 type NoteListProps = {
   notes: Note[];

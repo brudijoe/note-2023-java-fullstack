@@ -2,7 +2,7 @@ import useNotes, {NoteContext} from "./hooks/useNotes";
 import {CreateNote} from "./pages/CreateNote";
 import {Header} from "./pages/Header";
 import {Title} from "./components/Title";
-import {NoteList} from "./pages/NoteList";
+import {NoteList} from "./pages/Note/NoteList";
 
 function App() {
   const {notes, loading, error, addNote, deleteNote, editNote} = useNotes();

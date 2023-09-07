@@ -1,9 +1,9 @@
 import {useRef} from "react";
-import {Button} from "../components/buttons/Button";
-import {EditDialog} from "../components/dialogs/EditDialog";
-import {DeleteDialog} from "../components/dialogs/DeleteDialog";
-import {ButtonGroup} from "../components/ButtonGroup";
-import {Note} from "../types/types";
+import {Button} from "../../components/buttons/Button";
+import {EditDialog} from "../../components/dialogs/EditDialog";
+import {DeleteDialog} from "../../components/dialogs/DeleteDialog";
+import {ButtonGroup} from "../../components/ButtonGroup";
+import {Note} from "../../types/types";
 import {NoteInformation} from "./NoteInformation";
 
 type NoteCardProps = {
