@@ -4,8 +4,10 @@ import {Button} from "../buttons/Button";
 import {Title} from "../Title";
 import {Dialog} from "../Dialog";
 import {ButtonGroup} from "../ButtonGroup";
-import {Textarea} from "../Textarea";
+import {AddTextarea} from "../textareas/AddTextarea";
 import {Form} from "../Form";
+import {NoteWithOutId} from "../../types/types";
+import {trim} from "ramda";
 
 type AddDialogProps = {
   title: string;
@@ -20,13 +22,20 @@ export function AddDialog({title, dialogRef}: AddDialogProps) {
   }
 
   const {addNote} = noteContext;
-  const [noteText, setNoteText] = useState("");
+  const [note, setNote] = useState<NoteWithOutId>({
+    noteTitle: "",
+    noteText: ""
+  });
 
   function handleAddNote() {
-    if (noteText.trim() !== "") {
-      addNote({noteText});
-      setNoteText("");
-    }
+    addNote({
+      noteTitle: trim(note.noteTitle),
+      noteText: trim(note.noteText)
+    });
+    setNote({
+      noteTitle: "",
+      noteText: ""
+    });
     if (dialogRef.current !== null) {
       dialogRef.current.close();
     }
@@ -36,14 +45,17 @@ export function AddDialog({title, dialogRef}: AddDialogProps) {
     if (dialogRef.current !== null) {
       dialogRef.current.close();
     }
-    setNoteText("");
+    setNote({
+      noteTitle: "",
+      noteText: ""
+    });
   }
 
   return (
     <Dialog width="w-6/12" dialogRef={dialogRef}>
       <Form>
         <Title title={title} />
-        <Textarea noteText={noteText} onSetNoteText={setNoteText} />
+        <AddTextarea note={note} onSetNote={setNote} />
         <ButtonGroup flexDirection="flex-row" justify="justify-between">
           <Button
             borderColor="border-gray-500"
@@ -53,15 +65,26 @@ export function AddDialog({title, dialogRef}: AddDialogProps) {
           >
             Cancel
           </Button>
-          <Button
-            borderColor="border-green-300"
-            backgroundColor="bg-green-500"
-            backgroundColorHover="hover:bg-green-700"
-            onClick={handleAddNote}
-            ariaLabel="confirm"
-          >
-            Confirm
-          </Button>
+          {note.noteText === "" ? (
+            <Button
+              borderColor="border-gray-500"
+              backgroundColorHover="hover:bg-gray-700"
+              ariaLabel="disabled"
+              cursor="cursor-not-allowed"
+            >
+              Confirm
+            </Button>
+          ) : (
+            <Button
+              borderColor="border-green-300"
+              backgroundColor="bg-green-500"
+              backgroundColorHover="hover:bg-green-700"
+              onClick={handleAddNote}
+              ariaLabel="confirm"
+            >
+              Confirm
+            </Button>
+          )}
         </ButtonGroup>
       </Form>
     </Dialog>

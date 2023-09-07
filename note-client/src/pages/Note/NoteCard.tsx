@@ -5,6 +5,7 @@ import {DeleteDialog} from "../../components/dialogs/DeleteDialog";
 import {ButtonGroup} from "../../components/ButtonGroup";
 import {Note} from "../../types/types";
 import {NoteInformation} from "./NoteInformation";
+import {NoteContent} from "./NoteContent";
 
 type NoteCardProps = {
   singleNote: Note;
@@ -31,8 +32,8 @@ export function NoteCard({singleNote}: NoteCardProps) {
       className="flex flex-row justify-between items-center p-4 bg-gray-200 dark:bg-gray-800 border-2 border-black dark:border-white shadow-md rounded"
       key={singleNote.noteId}
     >
-      <NoteInformation noteId={singleNote.noteId} />
-      <div className="flex-1 px-4 text-justify text-black dark:text-white">{singleNote.noteText}</div>
+      <NoteInformation note={singleNote} />
+      <NoteContent note={singleNote} />
       <ButtonGroup flexDirection="flex-row" gap="gap-4">
         <Button
           borderColor="border-blue-500"
@@ -55,6 +56,7 @@ export function NoteCard({singleNote}: NoteCardProps) {
       <EditDialog
         title={"Edit Note"}
         existingNoteId={singleNote.noteId}
+        existingNoteTitle={singleNote.noteTitle}
         existingNoteText={singleNote.noteText}
         dialogRef={editDialogRef}
       />

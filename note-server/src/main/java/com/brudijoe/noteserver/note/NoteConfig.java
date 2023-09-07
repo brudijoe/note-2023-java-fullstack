@@ -16,10 +16,12 @@ public class NoteConfig {
     CommandLineRunner commandLineRunner(NoteRepository noteRepository) {
         return args -> {
             Note noteOne = new Note(
+                    "Title 1",
                     "This is a text - 1"
             );
 
             Note noteTwo = new Note(
+                    "Title 2",
                     "This is a text - 2"
             );
 

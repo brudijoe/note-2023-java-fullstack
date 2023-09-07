@@ -36,8 +36,8 @@ public class NoteServiceTest {
     public void testGetNotes() {
         // Create test data
         List<Note> testData = new ArrayList<>();
-        testData.add(new Note(1L, "Note 1"));
-        testData.add(new Note(2L, "Note 2"));
+        testData.add(new Note(1L, "Title 1", "Note 1"));
+        testData.add(new Note(2L, "Title 2", "Note 2"));
 
         // Define the behavior of the mocked repository
         when(noteRepository.findAll()).thenReturn(testData);
@@ -53,8 +53,8 @@ public class NoteServiceTest {
     public void testAddNote() {
         // Create test data
         List<Note> testData = new ArrayList<>();
-        testData.add(new Note(1L, "Note 1"));
-        Note singleNote = new Note(2L, "singleNote");
+        testData.add(new Note(1L, "Title 1", "Note 1"));
+        Note singleNote = new Note(2L, "singleNoteTitle", "singleNote");
 
         // Define the behavior of the mocked repository for saving a note
         when(noteRepository.save(any(Note.class))).thenReturn(singleNote);

@@ -6,6 +6,7 @@ type ButtonProps = {
   backgroundColor?: string;
   backgroundColorHover: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  cursor?: string;
   ariaLabel?: string;
   children?: React.ReactNode;
 };
@@ -16,6 +17,7 @@ export function Button({
   backgroundColor,
   backgroundColorHover,
   onClick,
+  cursor,
   ariaLabel,
   children
 }: ButtonProps) {
@@ -23,7 +25,7 @@ export function Button({
     <button
       type={type}
       onClick={onClick}
-      className={`w-24 py-2 px-4 ${backgroundColor} ${backgroundColorHover} text-black dark:text-white font-semibold hover:text-white border-2 ${borderColor} hover:border-transparent rounded`}
+      className={`w-24 py-2 px-4 ${backgroundColor} ${backgroundColorHover} text-black dark:text-white font-semibold hover:text-white border-2 ${borderColor} hover:border-transparent rounded ${cursor}`}
       aria-label={ariaLabel}
     >
       {children}

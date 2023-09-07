@@ -24,23 +24,27 @@ public class Note {
     )
     private Long noteId;
     @Column(length = 1024)
+    private String noteTitle;
     private String noteText;
 
     public Note() {
 
     }
 
-    public Note(Long noteId, String noteText) {
+    public Note(Long noteId, String noteText, String noteTitle) {
         this.noteId = noteId;
         this.noteText = noteText;
+        this.noteTitle = noteTitle;
     }
 
-    public Note(String noteText) {
+    public Note(String noteTitle, String noteText) {
+        this.noteTitle = noteTitle;
         this.noteText = noteText;
     }
 
+
     public Long getNoteId() {
-        return noteId;
+        return this.noteId;
     }
 
     public void setNoteId(Long noteId) {
@@ -48,18 +52,29 @@ public class Note {
     }
 
     public String getNoteText() {
-        return noteText;
+        return this.noteText;
     }
 
     public void setNoteText(String noteText) {
         this.noteText = noteText;
     }
 
+    public String getNoteTitle() {
+        return this.noteTitle;
+    }
+
+    public void setNoteTitle(String noteTitle) {
+        this.noteTitle = noteTitle;
+    }
+
+
     @Override
     public String toString() {
-        return "Note{" +
-                "noteId=" + noteId +
-                ", noteText='" + noteText + '\'' +
-                '}';
+        return "{" +
+            " noteId='" + getNoteId() + "'" +
+            ", noteText='" + getNoteText() + "'" +
+            ", noteTitle='" + getNoteTitle() + "'" +
+            "}";
     }
+
 }

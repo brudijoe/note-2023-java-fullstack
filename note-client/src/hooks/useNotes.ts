@@ -3,8 +3,6 @@ import axios from "axios";
 import {SETTINGS} from "../settings";
 import {NoteStore, Note} from "../types/types";
 
-type SimpleNote = Omit<Note, "noteId">;
-
 export const NoteContext = createContext<NoteStore | null>(null);
 
 export default function useNotes(): NoteStore {
@@ -25,7 +23,7 @@ export default function useNotes(): NoteStore {
       });
   }, []);
 
-  const addNote = async (newNote: SimpleNote) => {
+  const addNote = async (newNote: Note) => {
     try {
       const response = await axios.post<Note[]>(`${SETTINGS.HOST}/api/v1/addNote`, newNote);
       setNotes(response.data);
@@ -51,11 +49,9 @@ export default function useNotes(): NoteStore {
     }
   };
 
-  const editNote = async (noteId: number, newNoteText: string) => {
+  const editNote = async (noteId: number, note: Note) => {
     try {
-      const response = await axios.put<Note[]>(`${SETTINGS.HOST}/api/v1/editNote/${noteId}`, {
-        noteText: newNoteText
-      });
+      const response = await axios.put<Note[]>(`${SETTINGS.HOST}/api/v1/editNote/${noteId}`, note);
       setNotes(response.data);
     } catch (error) {
       if (error instanceof Error) {
