@@ -28,8 +28,6 @@ export function AddDialog({title, dialogRef}: AddDialogProps) {
     noteText: ""
   });
 
-  console.log(note);
-
   function handleAddNote() {
     addNote({
       noteId: null,
