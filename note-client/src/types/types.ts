@@ -5,7 +5,7 @@ export type NoteStore = {
 
   error: string | null;
 
-  addNote: ({ noteTitle, noteText }: NoteWithOutId) => void
+  addNote: ({ noteTitle, noteText }: Note) => void
 
   deleteNote: (noteId: number) => void
 
@@ -13,11 +13,7 @@ export type NoteStore = {
 };
 
 export type Note = {
-  noteId: number;
+  noteId: number | null;
   noteTitle?: string;
   noteText: string;
-};
-
-export type NoteWithOutId = Omit<Note, "noteId"> & {
-  noteTitle: string;
 };

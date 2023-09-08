@@ -4,10 +4,10 @@ import {Button} from "../buttons/Button";
 import {Title} from "../Title";
 import {Dialog} from "../Dialog";
 import {ButtonGroup} from "../ButtonGroup";
-import {AddTextarea} from "../textareas/AddTextarea";
-import {Form} from "../Form";
-import {NoteWithOutId} from "../../types/types";
+import {TextareaInputForm} from "../TextareaInputForm";
+import {DialogContentWrapper} from "../DialogContentWrapper";
 import {trim} from "ramda";
+import {Note} from "../../types/types";
 
 type AddDialogProps = {
   title: string;
@@ -22,17 +22,22 @@ export function AddDialog({title, dialogRef}: AddDialogProps) {
   }
 
   const {addNote} = noteContext;
-  const [note, setNote] = useState<NoteWithOutId>({
+  const [note, setNote] = useState<Note>({
+    noteId: null,
     noteTitle: "",
     noteText: ""
   });
 
+  console.log(note);
+
   function handleAddNote() {
     addNote({
-      noteTitle: trim(note.noteTitle),
+      noteId: null,
+      noteTitle: note.noteTitle ? trim(note.noteTitle) : "",
       noteText: trim(note.noteText)
     });
     setNote({
+      noteId: null,
       noteTitle: "",
       noteText: ""
     });
@@ -46,6 +51,7 @@ export function AddDialog({title, dialogRef}: AddDialogProps) {
       dialogRef.current.close();
     }
     setNote({
+      noteId: null,
       noteTitle: "",
       noteText: ""
     });
@@ -53,9 +59,9 @@ export function AddDialog({title, dialogRef}: AddDialogProps) {
 
   return (
     <Dialog width="w-6/12" dialogRef={dialogRef}>
-      <Form>
+      <DialogContentWrapper>
         <Title title={title} />
-        <AddTextarea note={note} onSetNote={setNote} />
+        <TextareaInputForm note={note} onSetNote={setNote} />
         <ButtonGroup flexDirection="flex-row" justify="justify-between">
           <Button
             borderColor="border-gray-500"
@@ -86,7 +92,7 @@ export function AddDialog({title, dialogRef}: AddDialogProps) {
             </Button>
           )}
         </ButtonGroup>
-      </Form>
+      </DialogContentWrapper>
     </Dialog>
   );
 }

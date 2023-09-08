@@ -4,7 +4,7 @@ import {Button} from "../buttons/Button";
 import {Title} from "../Title";
 import {Dialog} from "../Dialog";
 import {ButtonGroup} from "../ButtonGroup";
-import {Form} from "../Form";
+import {DialogContentWrapper} from "../DialogContentWrapper";
 
 type DeleteDialogProps = {
   title: string;
@@ -36,7 +36,7 @@ export function DeleteDialog({title, existingNoteId, dialogRef}: DeleteDialogPro
 
   return (
     <Dialog width="w-72" dialogRef={dialogRef}>
-      <Form>
+      <DialogContentWrapper>
         <Title title={title} />
         <div className="text-black dark:text-white">{existingNoteId}</div>
         <ButtonGroup flexDirection="flex-row" justify="justify-between">
@@ -58,7 +58,7 @@ export function DeleteDialog({title, existingNoteId, dialogRef}: DeleteDialogPro
             Delete
           </Button>
         </ButtonGroup>
-      </Form>
+      </DialogContentWrapper>
     </Dialog>
   );
 }

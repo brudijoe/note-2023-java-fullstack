@@ -3,9 +3,9 @@ import {NoteContext} from "../../hooks/useNotes";
 import {Button} from "../buttons/Button";
 import {Title} from "../Title";
 import {Dialog} from "../Dialog";
-import {EditTextarea} from "../textareas/EditTextarea";
+import {TextareaInputForm} from "../TextareaInputForm";
 import {ButtonGroup} from "../ButtonGroup";
-import {Form} from "../Form";
+import {DialogContentWrapper} from "../DialogContentWrapper";
 import {Note} from "../../types/types";
 
 type EditDialogProps = {
@@ -53,9 +53,9 @@ export function EditDialog({
 
   return (
     <Dialog width="w-6/12" dialogRef={dialogRef}>
-      <Form>
+      <DialogContentWrapper>
         <Title title={title} />
-        <EditTextarea note={note} onSetNote={setNote} />
+        <TextareaInputForm note={note} onSetNote={setNote} />
         <ButtonGroup flexDirection="flex-row" justify="justify-between">
           <Button
             borderColor="border-gray-500"
@@ -75,7 +75,7 @@ export function EditDialog({
             Confirm
           </Button>
         </ButtonGroup>
-      </Form>
+      </DialogContentWrapper>
     </Dialog>
   );
 }
