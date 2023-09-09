@@ -12,7 +12,7 @@ function App() {
       <div className="flex flex-col h-full bg-gray-100 dark:bg-gray-900">
         <Header />
         {loading ? (
-          <div className="py-2 text-black dark:text-white font-bold">Loading...</div>
+          <div className="text-black dark:text-white font-bold">Loading...</div>
         ) : error ? (
           <Title title={error} />
         ) : (
