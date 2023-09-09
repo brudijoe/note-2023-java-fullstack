@@ -6,6 +6,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +38,9 @@ public class NoteServiceTest {
     public void testGetNotes() {
         // Create test data
         List<Note> testData = new ArrayList<>();
-        testData.add(new Note(1L, "Title 1", "Note 1"));
-        testData.add(new Note(2L, "Title 2", "Note 2"));
+        LocalDate currentDate = LocalDate.now(ZoneId.of("Europe/Berlin"));
+        testData.add(new Note(1L, "Title 1", "Note 1", currentDate));
+        testData.add(new Note(2L, "Title 2", "Note 2", currentDate));
 
         // Define the behavior of the mocked repository
         when(noteRepository.findAll()).thenReturn(testData);
@@ -53,8 +56,9 @@ public class NoteServiceTest {
     public void testAddNote() {
         // Create test data
         List<Note> testData = new ArrayList<>();
-        testData.add(new Note(1L, "Title 1", "Note 1"));
-        Note singleNote = new Note(2L, "singleNoteTitle", "singleNote");
+        LocalDate currentDate = LocalDate.now(ZoneId.of("Europe/Berlin"));
+        testData.add(new Note(1L, "Title 1", "Note 1", currentDate));
+        Note singleNote = new Note(2L, "singleNoteTitle", "singleNote", currentDate);
 
         // Define the behavior of the mocked repository for saving a note
         when(noteRepository.save(any(Note.class))).thenReturn(singleNote);

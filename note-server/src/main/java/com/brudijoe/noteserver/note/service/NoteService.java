@@ -1,5 +1,7 @@
 package com.brudijoe.noteserver.note.service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,6 +25,8 @@ public class NoteService {
     }
 
     public void addNote(Note note) {
+        LocalDate currenteDate = LocalDate.now(ZoneId.of("Europe/Berlin"));
+        note.setNoteCreationDate(currenteDate);
         noteRepository.save(note);
     }
 

@@ -1,5 +1,7 @@
 package com.brudijoe.noteserver.note.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,20 +28,24 @@ public class Note {
     @Column(length = 1024)
     private String noteTitle;
     private String noteText;
+    private LocalDate noteCreationDate;
 
     public Note() {
 
     }
 
-    public Note(Long noteId, String noteText, String noteTitle) {
+    public Note(Long noteId, String noteTitle, String noteText, LocalDate noteCreationDate) {
         this.noteId = noteId;
-        this.noteText = noteText;
         this.noteTitle = noteTitle;
+        this.noteText = noteText;
+        this.noteCreationDate = noteCreationDate;
     }
 
-    public Note(String noteTitle, String noteText) {
+    /* This contructor is for the database and doesn't need a noteId */
+    public Note(String noteTitle, String noteText, LocalDate noteCreationDate) {
         this.noteTitle = noteTitle;
         this.noteText = noteText;
+        this.noteCreationDate = noteCreationDate;
     }
 
 
@@ -68,12 +74,21 @@ public class Note {
     }
 
 
+    public LocalDate getNoteCreationDate() {
+        return this.noteCreationDate;
+    }
+
+    public void setNoteCreationDate(LocalDate noteCreationDate) {
+        this.noteCreationDate = noteCreationDate;
+    }
+
     @Override
     public String toString() {
         return "{" +
             " noteId='" + getNoteId() + "'" +
-            ", noteText='" + getNoteText() + "'" +
             ", noteTitle='" + getNoteTitle() + "'" +
+            ", noteText='" + getNoteText() + "'" +
+            ", noteCreationDate='" + getNoteCreationDate() + "'" +
             "}";
     }
 
