@@ -12,7 +12,8 @@ type EditDialogProps = {
   title: string;
   existingNoteId: number;
   existingNoteTitle?: string;
-  existingNoteText?: string;
+  existingNoteText: string;
+  existingNoteCreationDate: string;
   dialogRef: React.RefObject<HTMLDialogElement>;
 };
 
@@ -21,6 +22,7 @@ export function EditDialog({
   existingNoteId,
   existingNoteTitle = "",
   existingNoteText = "",
+  existingNoteCreationDate,
   dialogRef
 }: EditDialogProps) {
   const noteContext = useContext(NoteContext);
@@ -33,7 +35,8 @@ export function EditDialog({
   const [note, setNote] = useState<Note>({
     noteId: existingNoteId,
     noteTitle: existingNoteTitle,
-    noteText: existingNoteText
+    noteText: existingNoteText,
+    noteCreationDate: existingNoteCreationDate
   });
 
   function handleEditNote() {

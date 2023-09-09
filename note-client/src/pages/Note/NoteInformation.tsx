@@ -7,8 +7,8 @@ type NoteInformationProps = {
 export function NoteInformation({note}: NoteInformationProps) {
   return (
     <div className="flex flex-col">
-      <div className=" text-black dark:text-white">{note.noteId}</div>
-      <div className="text-black dark:text-white">Created: 9/2/2023</div>
+      <div className="text-black dark:text-white">{note.noteId}</div>
+      <div className="text-black dark:text-white">Created: {note.noteCreationDate}</div>
     </div>
   );
 }

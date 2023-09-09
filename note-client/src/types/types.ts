@@ -16,4 +16,5 @@ export type Note = {
   noteId: number | null;
   noteTitle?: string;
   noteText: string;
+  noteCreationDate: string;
 };
