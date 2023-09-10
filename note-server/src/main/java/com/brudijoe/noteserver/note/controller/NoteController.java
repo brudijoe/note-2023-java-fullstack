@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.brudijoe.noteserver.note.model.Note;
@@ -44,16 +45,17 @@ public class NoteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(updatedNotes);
     }
 
-    @DeleteMapping(path = "/deleteNote/{noteId}")
-    public ResponseEntity<List<Note>> deleteNote(@PathVariable("noteId") Long noteId) {
+    @DeleteMapping(path = "/deleteNote")
+    public ResponseEntity<List<Note>> deleteNote(@RequestParam("noteId") Long noteId) {
         noteService.deleteNote(noteId);
         List<Note> updatedNotes = noteService.getNotes();
         updatedNotes.sort(Comparator.comparing(Note::getNoteId));
         return ResponseEntity.ok().body(updatedNotes);
     }
 
-    @PutMapping(path = "/editNote/{noteId}")
-    public ResponseEntity<List<Note>> updateNote(@PathVariable("noteId") Long noteId, @RequestBody Note note) {
+
+    @PutMapping(path = "/editNote")
+    public ResponseEntity<List<Note>> updateNote(@RequestParam("noteId") Long noteId, @RequestBody Note note) {
         noteService.updateNote(noteId, note.getNoteTitle(), note.getNoteText());
         List<Note> updatedNotes = noteService.getNotes();
         updatedNotes.sort(Comparator.comparing(Note::getNoteId));

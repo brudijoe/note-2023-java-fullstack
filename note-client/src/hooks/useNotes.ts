@@ -38,7 +38,11 @@ export default function useNotes(): NoteStore {
 
   const deleteNote = async (noteId: number): Promise<void> => {
     try {
-      const response = await axios.delete<Note[]>(`${SETTINGS.HOST}/api/v1/deleteNote/${noteId}`);
+      const response = await axios.delete<Note[]>(`${SETTINGS.HOST}/api/v1/deleteNote`, {
+        params: {
+          noteId: noteId
+        }
+      });
       setNotes(response.data);
     } catch (error) {
       if (error instanceof Error) {
@@ -51,7 +55,11 @@ export default function useNotes(): NoteStore {
 
   const editNote = async (noteId: number, note: Note): Promise<void> => {
     try {
-      const response = await axios.put<Note[]>(`${SETTINGS.HOST}/api/v1/editNote/${noteId}`, note);
+      const response = await axios.put<Note[]>(`${SETTINGS.HOST}/api/v1/editNote`, note, {
+        params: {
+          noteId: noteId
+        }
+      });
       setNotes(response.data);
     } catch (error) {
       if (error instanceof Error) {
