@@ -4,10 +4,10 @@ import {Button} from "../buttons/Button";
 import {Title} from "../Title";
 import {Dialog} from "../Dialog";
 import {ButtonGroup} from "../ButtonGroup";
-import {TextareaInputForm} from "../TextareaInputForm";
 import {DialogContentWrapper} from "../DialogContentWrapper";
 import {trim} from "ramda";
-import {Note} from "../../types/types";
+import {NoteWithOutId} from "../../types/types";
+import {TextareaInputForm} from "../TextareaInputForm";
 
 type AddDialogProps = {
   title: string;
@@ -22,20 +22,17 @@ export function AddDialog({title, dialogRef}: AddDialogProps) {
   }
 
   const {addNote} = noteContext;
-  const [note, setNote] = useState<Note>({
-    noteId: null,
+  const [note, setNote] = useState<NoteWithOutId>({
     noteTitle: "",
     noteText: ""
   });
 
   function handleAddNote() {
     addNote({
-      noteId: null,
       noteTitle: note.noteTitle ? trim(note.noteTitle) : "",
       noteText: trim(note.noteText)
     });
     setNote({
-      noteId: null,
       noteTitle: "",
       noteText: ""
     });
@@ -49,7 +46,6 @@ export function AddDialog({title, dialogRef}: AddDialogProps) {
       dialogRef.current.close();
     }
     setNote({
-      noteId: null,
       noteTitle: "",
       noteText: ""
     });

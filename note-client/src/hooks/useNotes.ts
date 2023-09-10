@@ -1,7 +1,7 @@
 import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import {SETTINGS} from "../settings";
-import {NoteStore, Note} from "../types/types";
+import {NoteStore, Note, NoteWithOutId} from "../types/types";
 
 export const NoteContext = createContext<NoteStore | null>(null);
 
@@ -23,7 +23,7 @@ export default function useNotes(): NoteStore {
       });
   }, []);
 
-  const addNote = async (newNote: Note) => {
+  const addNote = async (newNote: NoteWithOutId): Promise<void> => {
     try {
       const response = await axios.post<Note[]>(`${SETTINGS.HOST}/api/v1/addNote`, newNote);
       setNotes(response.data);
@@ -36,7 +36,7 @@ export default function useNotes(): NoteStore {
     }
   };
 
-  const deleteNote = async (noteId: number) => {
+  const deleteNote = async (noteId: number): Promise<void> => {
     try {
       const response = await axios.delete<Note[]>(`${SETTINGS.HOST}/api/v1/deleteNote/${noteId}`);
       setNotes(response.data);
@@ -49,7 +49,7 @@ export default function useNotes(): NoteStore {
     }
   };
 
-  const editNote = async (noteId: number, note: Note) => {
+  const editNote = async (noteId: number, note: Note): Promise<void> => {
     try {
       const response = await axios.put<Note[]>(`${SETTINGS.HOST}/api/v1/editNote/${noteId}`, note);
       setNotes(response.data);

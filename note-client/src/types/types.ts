@@ -1,20 +1,17 @@
 export type NoteStore = {
   notes: Note[] | null;
-
   loading: boolean;
-
   error: string | null;
-
-  addNote: ({ noteTitle, noteText }: Note) => void
-
-  deleteNote: (noteId: number) => void
-
-  editNote: (noteId: number, note: Note) => void
+  addNote: ({ noteTitle, noteText }: NoteWithOutId) => Promise<void>;
+  deleteNote: (noteId: number) => Promise<void>;
+  editNote: (noteId: number, note: Note) => Promise<void>;
 };
 
 export type Note = {
-  noteId: number | null;
+  noteId?: number;
   noteTitle?: string;
   noteText: string;
-  noteCreationDate: string;
+  noteCreationDate?: string;
 };
+
+export type NoteWithOutId = Omit<Note, "noteId" | "noteCreationDate">;

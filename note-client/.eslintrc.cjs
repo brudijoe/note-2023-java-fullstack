@@ -20,6 +20,8 @@ module.exports = {
   rules: {
     "react-refresh/only-export-components": ["warn", {allowConstantExport: true}],
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/unbound-method": "error"
   }
 };

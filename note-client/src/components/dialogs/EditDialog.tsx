@@ -3,17 +3,16 @@ import {NoteContext} from "../../hooks/useNotes";
 import {Button} from "../buttons/Button";
 import {Title} from "../Title";
 import {Dialog} from "../Dialog";
-import {TextareaInputForm} from "../TextareaInputForm";
 import {ButtonGroup} from "../ButtonGroup";
 import {DialogContentWrapper} from "../DialogContentWrapper";
 import {Note} from "../../types/types";
+import {TextareaInputForm} from "../TextareaInputForm";
 
 type EditDialogProps = {
   title: string;
   existingNoteId: number;
   existingNoteTitle?: string;
   existingNoteText: string;
-  existingNoteCreationDate: string;
   dialogRef: React.RefObject<HTMLDialogElement>;
 };
 
@@ -22,7 +21,6 @@ export function EditDialog({
   existingNoteId,
   existingNoteTitle = "",
   existingNoteText = "",
-  existingNoteCreationDate,
   dialogRef
 }: EditDialogProps) {
   const noteContext = useContext(NoteContext);
@@ -35,8 +33,7 @@ export function EditDialog({
   const [note, setNote] = useState<Note>({
     noteId: existingNoteId,
     noteTitle: existingNoteTitle,
-    noteText: existingNoteText,
-    noteCreationDate: existingNoteCreationDate
+    noteText: existingNoteText
   });
 
   function handleEditNote() {
