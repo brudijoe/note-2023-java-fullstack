@@ -52,6 +52,5 @@ public class NoteService {
         if (!Objects.equals(note.getNoteTitle(), noteTitle)) {
             note.setNoteTitle(noteTitle);
         }
-
     }
 }
