@@ -8,7 +8,7 @@ export type NoteStore = {
 };
 
 export type Note = {
-  noteId?: number;
+  noteId: number;
   noteTitle?: string;
   noteText: string;
   noteCreationDate?: string;

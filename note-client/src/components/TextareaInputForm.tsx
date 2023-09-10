@@ -1,15 +1,15 @@
 import {Note, NoteWithOutId} from "../types/types";
 
-type TextareaProps = {
+type TextareaProps<T> = {
   note: Note | NoteWithOutId;
-  onSetNote: React.Dispatch<React.SetStateAction<Note | NoteWithOutId>>;
+  onSetNote: React.Dispatch<React.SetStateAction<T>>;
 };
 
-export function TextareaInputForm({note, onSetNote}: TextareaProps) {
+export function TextareaInputForm<T>({note, onSetNote}: TextareaProps<T>) {
   function handleChangeInput(event: React.ChangeEvent<HTMLInputElement>) {
     const newNoteTitle = event.target.value;
     if (onSetNote) {
-      onSetNote((prevNote: Note | NoteWithOutId) => ({
+      onSetNote((prevNote) => ({
         ...prevNote,
         noteTitle: newNoteTitle
       }));
@@ -19,7 +19,7 @@ export function TextareaInputForm({note, onSetNote}: TextareaProps) {
   function handleChangeTextarea(event: React.ChangeEvent<HTMLTextAreaElement>) {
     const newNoteText = event.target.value;
     if (onSetNote) {
-      onSetNote((prevNote: Note | NoteWithOutId) => ({
+      onSetNote((prevNote) => ({
         ...prevNote,
         noteText: newNoteText
       }));
