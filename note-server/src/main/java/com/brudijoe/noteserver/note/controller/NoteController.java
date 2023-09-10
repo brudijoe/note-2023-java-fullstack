@@ -54,8 +54,8 @@ public class NoteController {
 
 
     @PutMapping(path = "/editNote")
-    public ResponseEntity<List<Note>> updateNote(@RequestParam("noteId") Long noteId, @RequestBody Note note) {
-        noteService.updateNote(noteId, note.getNoteTitle(), note.getNoteText());
+    public ResponseEntity<List<Note>> editNote(@RequestParam("noteId") Long noteId, @RequestBody Note note) {
+        noteService.editNote(noteId, note.getNoteTitle(), note.getNoteText());
         List<Note> updatedNotes = noteService.getNotes();
         updatedNotes.sort(Comparator.comparing(Note::getNoteId));
         return ResponseEntity.ok().body(updatedNotes);

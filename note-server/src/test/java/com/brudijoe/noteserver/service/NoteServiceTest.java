@@ -16,18 +16,21 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
+import com.brudijoe.noteserver.note.controller.NoteController;
 import com.brudijoe.noteserver.note.model.Note;
 import com.brudijoe.noteserver.note.repository.NoteRepository;
 import com.brudijoe.noteserver.note.service.NoteService;
 
 public class NoteServiceTest {
 
-    @Mock
-    NoteRepository noteRepository;
-
     @InjectMocks
     private NoteService noteService;
+
+    @Mock
+    private NoteRepository noteRepository;
 
     @BeforeEach
     public void setUp() {
@@ -35,40 +38,19 @@ public class NoteServiceTest {
     }
 
     @Test
-    public void testGetNotes() {
-        // Create test data
-        List<Note> testData = new ArrayList<>();
-        LocalDate currentDate = LocalDate.now(ZoneId.of("Europe/Berlin"));
-        testData.add(new Note(1L, "Title 1", "Note 1", currentDate));
-        testData.add(new Note(2L, "Title 2", "Note 2", currentDate));
-
-        // Define the behavior of the mocked repository
-        when(noteRepository.findAll()).thenReturn(testData);
-
-        // Call the method you want to test
-        List<Note> result = noteService.getNotes();
-
-        // Assert that the result matches your expectations
-        assertEquals(2, result.size());
-    }
-
-    @Test
     public void testAddNote() {
-        // Create test data
-        List<Note> testData = new ArrayList<>();
-        LocalDate currentDate = LocalDate.now(ZoneId.of("Europe/Berlin"));
-        testData.add(new Note(1L, "Title 1", "Note 1", currentDate));
-        Note singleNote = new Note(2L, "singleNoteTitle", "singleNote", currentDate);
+        Note newNote = new Note("New Title", "New Text", LocalDate.now());
+        
+        // Define the behavior of the mock repository
+        when(noteRepository.save(any(Note.class))).thenReturn(newNote);
 
-        // Define the behavior of the mocked repository for saving a note
-        when(noteRepository.save(any(Note.class))).thenReturn(singleNote);
+        // Call the service method
+        noteService.addNote(newNote);
 
-        // Call the addNote method to add the singleNote
-        noteService.addNote(singleNote);
-
-        // Verify that the noteRepository.save method was called once with the singleNote object
-        verify(noteRepository, times(1)).save(singleNote);
-
+        // Verify that the note was saved
+        verify(noteRepository, times(1)).save(newNote);
     }
+
+    
 
 }

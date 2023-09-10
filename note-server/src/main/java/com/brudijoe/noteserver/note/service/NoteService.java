@@ -39,7 +39,7 @@ public class NoteService {
     }
 
     @Transactional
-    public void updateNote(Long noteId, String noteTitle, String noteText) {
+    public void editNote(Long noteId, String noteTitle, String noteText) {
         Note note = noteRepository.findById(noteId)
                 .orElseThrow(() -> new IllegalStateException("note with noteId: " + noteId + " does not exist"));
 
