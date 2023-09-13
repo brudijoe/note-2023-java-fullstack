@@ -1,4 +1,4 @@
-package com.brudijoe.noteserver.note;
+package com.brudijoe.noteserver.note.configuration;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
