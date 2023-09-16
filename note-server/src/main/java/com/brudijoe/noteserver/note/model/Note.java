@@ -2,32 +2,26 @@ package com.brudijoe.noteserver.note.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "note")
 public class Note {
 
     @Id
-    @SequenceGenerator(
-            name = "note_sequence",
-            sequenceName = "note_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "note_sequence"
-    )
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "note_id")
     private Long noteId;
-    @Column(length = 1024)
+    @Column(name = "note_title", length = 255)
     private String noteTitle;
+    @Column(name = "note_text", length = 255)
     private String noteText;
+    @Column(name = "note_creationDate")
     private LocalDate noteCreationDate;
 
     public Note() {
@@ -47,7 +41,6 @@ public class Note {
         this.noteText = noteText;
         this.noteCreationDate = noteCreationDate;
     }
-
 
     public Long getNoteId() {
         return this.noteId;
@@ -73,7 +66,6 @@ public class Note {
         this.noteTitle = noteTitle;
     }
 
-
     public LocalDate getNoteCreationDate() {
         return this.noteCreationDate;
     }
@@ -85,11 +77,11 @@ public class Note {
     @Override
     public String toString() {
         return "{" +
-            " noteId='" + getNoteId() + "'" +
-            ", noteTitle='" + getNoteTitle() + "'" +
-            ", noteText='" + getNoteText() + "'" +
-            ", noteCreationDate='" + getNoteCreationDate() + "'" +
-            "}";
+                " noteId='" + getNoteId() + "'" +
+                ", noteTitle='" + getNoteTitle() + "'" +
+                ", noteText='" + getNoteText() + "'" +
+                ", noteCreationDate='" + getNoteCreationDate() + "'" +
+                "}";
     }
 
 }

@@ -19,12 +19,14 @@ public class NoteConfig {
         return args -> {
             Note noteOne = new Note(
                     "Title 1",
-                    "This is a text - 1", LocalDate.now(ZoneId.of("Europe/Berlin"))
+                    "This is a text - 1", 
+                    LocalDate.now(ZoneId.of("Europe/Berlin"))
             );
 
             Note noteTwo = new Note(
                     "Title 2",
-                    "This is a text - 2", LocalDate.now(ZoneId.of("Europe/Berlin"))
+                    "This is a text - 2", 
+                    LocalDate.now(ZoneId.of("Europe/Berlin"))
             );
 
             noteRepository.saveAll(List.of(noteOne, noteTwo));
