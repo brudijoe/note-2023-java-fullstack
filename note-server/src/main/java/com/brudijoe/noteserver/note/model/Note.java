@@ -28,6 +28,15 @@ public class Note {
 
     }
 
+    /* This contructor is for testing and needs a noteId */
+    public Note(Long noteId, String noteTitle, String noteText, LocalDate noteCreationDate) {
+        this.noteId = noteId;
+        this.noteTitle = noteTitle;
+        this.noteText = noteText;
+        this.noteCreationDate = noteCreationDate;
+    }
+
+    /* This contructor is for the database and doesn't need a noteId */
     public Note(String noteTitle, String noteText, LocalDate noteCreationDate) {
         this.noteTitle = noteTitle;
         this.noteText = noteText;
