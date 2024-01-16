@@ -1,5 +1,5 @@
 # Use an offical Node runtime as a parent image
-FROM node
+FROM node:18-alpine
 # Set the working directory to /note-client
 WORKDIR /note-client
 # Copy package.json and package-lock.json to the container
